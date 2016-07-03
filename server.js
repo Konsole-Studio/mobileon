@@ -3,6 +3,8 @@ var app = express();
 var http = require('http');
 var https = require('https');
 var proxy = require('express-http-proxy');
+var domain = require('domain');
+var d = domain.create();
 fs = require('fs');
 var cleanup = require('./cleanup').Cleanup(cleanupHosts);
 cheerio = require('cheerio');
@@ -11,6 +13,10 @@ cheerio = require('cheerio');
 var siteUrl = 'pampaburger.com.br';
 
 var originalHosts = '';
+
+d.on('error', function(err) {
+  console.error(err);
+});
 
 function defineHost(req) {
   host = req.headers.host;
@@ -40,14 +46,11 @@ function updateHostFile(siteUrl, host) {
                                        + '\n' + '127.0.0.1' + '\t' + 'mlocal.' + siteUrl;
 
         /* Verify if readFile was successful to avoid Heroku issues */
-        // try {
-        //   fs.writeFile('/etc/hosts', newHostsContent, function (err) {
-        //     if (err) throw err;
-        //   });
-        // } catch(error) {
-        //   console.log('Couldn\'t modify hosts file, be sure to run the server as Root');
-        // }
-        fs.writeFileSync('/etc/hosts', newHostsContent);
+        d.run(function() {
+          fs.writeFile('/etc/hosts', newHostsContent, function (err) {
+            if (err) throw err;
+          });
+        });
       }
   });
 }
