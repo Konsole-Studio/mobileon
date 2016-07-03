@@ -1,0 +1,29 @@
+{
+  "name": "touch-first",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "css-select": "^1.2.0",
+    "dom-serializer": "^0.1.0",
+    "express": "^4.13.3",
+    "express-http-proxy": "^0.7.2",
+    "htmlparser2": "^3.9.1",
+    "http-proxy": "^1.14.0",
+    "lodash": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pt-br/touch-first.git"
+  },
+  "author": "@pt-br",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pt-br/touch-first/issues"
+  },
+  "homepage": "https://github.com/pt-br/touch-first#readme"
+}
