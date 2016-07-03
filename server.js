@@ -10,50 +10,69 @@ fs = require('fs');
 var path = require('path');
 var cleanup = require('./cleanup').Cleanup(cleanupHosts);
 cheerio = require('cheerio');
-
-/* Site URL */
-var siteUrl = 'pampaburger.com.br';
-
-var originalHosts = '';
+var url_map = require('./url_map.json');
 
 d.on('error', function(err) {
   console.error(err);
 });
 
-function defineHost(req) {
-  host = req.headers.host;
-  console.log('Host: ' + host);
-  // if( host.match(/localhost/g) ) {
-  //   hostVar = 'mlocal.';
-  // } else {
-  //   hostVar = 'm.';
-  // }
-  hostVar = 'mlocal.';
-  console.log("Hostvar " + hostVar);
-  hostComplete = hostVar + host;
-  console.log('Complete: ' + hostComplete);
+/* Site Route */
+var routes = [];
+var routesEndpoint = [];
+var routesHost = [];
+
+var originalHosts = '';
+
+getRoutes();
+getRoutesEndpoint();
+getRoutesHost();
+
+/* Site routes */
+function getRoutes() {
+  var urlRoutesLength = JSON.stringify(url_map.routes.length);
+  for( var i = 0; i < urlRoutesLength; i++ ) {
+    routes.push(JSON.stringify(url_map.routes[i]));
+  }
 }
 
-function updateHostFile(siteUrl, host) {
+function getRoutesEndpoint() {
+  for( var i = 0; i < routes.length; i++ ) {
+    routesEndpoint.push(routes[i].split('=> ')[1].replace('\"', ''));
+  }
+}
+
+function getRoutesHost() {
+  for( var i = 0; i < routes.length; i++ ) {
+    routesHost.push(routes[i].split('=> ')[0].replace('\"', ''));
+  }
+}
+
+function defineHostVariables(req) {
+  host = req.headers.host;
+  console.log('Host: ' + host);
+  hostVar = host.split('.')[0];
+  console.log("Hostvar " + hostVar);
+}
+
+function updateHostFile() {
   fs.readFile('/etc/hosts', 'utf8', function (err, hostsContent) {
     if (err) {
       return console.log(err);
     }
 
-      originalHosts = hostsContent;
-      siteUrlRegex = new RegExp(siteUrl, 'g');
+    originalHosts = hostsContent;
 
-      if ( !hostsContent.match(siteUrlRegex) ) {
-        newHostsContent = hostsContent + '\n# FIRST TOUCH AUTO GENERATED HOSTS'
-                                       + '\n' + '127.0.0.1' + '\t' + 'mlocal.' + siteUrl;
+    newHostsContent = hostsContent + '\n# FIRST TOUCH AUTO GENERATED HOSTS';
+    for( var i = 0; i < routesHost.length; i++ ) {
+      newHostsContent = newHostsContent + '\n' + '127.0.0.1' + '\t' + routesHost[i];
+    }
 
-        /* Verify if writeFile is successful to avoid Heroku issues */
-        d.run(function() {
-          fs.writeFile('/etc/hosts', newHostsContent, function (err) {
-            if (err) throw err;
-          });
-        });
-      }
+    /* Verify if writeFile is successful to avoid Heroku issues */
+    d.run(function() {
+      fs.writeFile('/etc/hosts', newHostsContent, function (err) {
+        if (err) throw err;
+      });
+    });
   });
 }
 
@@ -89,7 +108,7 @@ app.use(sassMiddleware({
 app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
-app.use('/', proxy(siteUrl, {
+app.use('/', proxy(routesEndpoint[0], {
 
   intercept: function(rsp, data, req, res, callback) {
     var contentType = res._headers['content-type'];
@@ -99,7 +118,7 @@ app.use('/', proxy(siteUrl, {
       if( contentType.match(/html/g) ) {
 
         /* Define Host and HostVar */
-        defineHost(req);
+        defineHostVariables(req);
 
 
         data = data.toString('utf8');
@@ -120,7 +139,7 @@ var httpServer = http.createServer(app);
 
 var httpPort = process.env.PORT || 80;
 httpServer.listen(httpPort, function() {
-  updateHostFile(siteUrl);
-  console.log('Access your project on: ' + 'mlocal.' + siteUrl );
+  updateHostFile();
+  console.log('Access your project on: ' + routesHost[0] );
 });
 //httpsServer.listen(8443);

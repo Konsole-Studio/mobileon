@@ -11,8 +11,10 @@ module.exports = function(callback, data, mappingUrl, contentType) {
 
     removeAllStyles();
     removeJS();
+    removeHtmlComments();
     insertVendorScripts();
     fixPampaImgSrc();
+    insertMainStyle();
 
     require('./mapping.js')(mappingUrl, contentType);
 

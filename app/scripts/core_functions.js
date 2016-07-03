@@ -16,6 +16,10 @@ insertVendorScripts = function() {
   head.append('<script src="http://' + host + '/vendor/jquery.DOMNodeAppear.js"></script>');
 }
 
+insertMainStyle = function() {
+  head.append('<link rel="stylesheet" href="http://' + host + '/styles/style.css">');
+}
+
 fixPampaImgSrc = function() {
   html.find('img.temp_no_img_src').each(function(i, elem) {
     var fixedSrc = $(this).attr('data-orig-src');
@@ -24,9 +28,20 @@ fixPampaImgSrc = function() {
   });
 }
 
+removeHtmlComments = function() {
+  function isComment(index, node) {
+    return node.type === 'comment'
+  }
+  $.root().contents().filter(isComment).remove();
+  head.contents().filter(isComment).remove();
+  body.contents().filter(isComment).remove();
+}
+
 module.exports = {
   removeAllStyles: removeAllStyles,
   removeJS: removeJS,
   insertVendorScripts: insertVendorScripts,
-  fixPampaImgSrc: fixPampaImgSrc
+  fixPampaImgSrc: fixPampaImgSrc,
+  insertMainStyle: insertMainStyle,
+  removeHtmlComments: removeHtmlComments
 };
