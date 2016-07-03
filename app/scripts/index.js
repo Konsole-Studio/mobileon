@@ -1,6 +1,5 @@
 module.exports = function(callback, data, mappingUrl, contentType) {
-  /* For now, just mapping html files */
-  if( contentType && contentType.match(/html/g) ) {
+
     /* Global DOM variables */
     html = $('html');
     body = $('body');
@@ -21,8 +20,5 @@ module.exports = function(callback, data, mappingUrl, contentType) {
     finalHtml = $('html').toString();
     // Output final content
     callback(null, finalHtml);
-  } else {
-    callback(null, data);
-  }
 
 };

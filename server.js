@@ -29,19 +29,21 @@ getRoutesHost();
 
 /* Site routes */
 function getRoutes() {
-  var urlRoutesLength = JSON.stringify(url_map.routes.length);
+  var urlRoutesLength = JSON.stringify(url_map.route.length);
   for( var i = 0; i < urlRoutesLength; i++ ) {
-    routes.push(JSON.stringify(url_map.routes[i]));
+    routes.push(JSON.stringify(url_map.route[i]));
   }
 }
 
 function getRoutesEndpoint() {
+  //routeEndpoint = routes[0].split('=> ')[1].replace('\"', '');
   for( var i = 0; i < routes.length; i++ ) {
     routesEndpoint.push(routes[i].split('=> ')[1].replace('\"', ''));
   }
 }
 
 function getRoutesHost() {
+  //routeHost = routes[0].split('=> ')[0].replace('\"', '');
   for( var i = 0; i < routes.length; i++ ) {
     routesHost.push(routes[i].split('=> ')[0].replace('\"', ''));
   }
@@ -63,6 +65,7 @@ function updateHostFile() {
     originalHosts = hostsContent;
 
     newHostsContent = hostsContent + '\n# FIRST TOUCH AUTO GENERATED HOSTS';
+    //newHostsContent = newHostsContent + '\n' + '127.0.0.1' + '\t' + routeHost;
     for( var i = 0; i < routesHost.length; i++ ) {
       newHostsContent = newHostsContent + '\n' + '127.0.0.1' + '\t' + routesHost[i];
     }
@@ -84,8 +87,8 @@ function cleanupHosts() {
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  // intercept OPTIONS method
-    if ('OPTIONS' == req.method) {
+    // intercept OPTIONS method
+    if( 'OPTIONS' == req.method ) {
       res.sendStatus(200);
     }
     else {
@@ -109,10 +112,22 @@ app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
 app.use('/', proxy(routesEndpoint[0], {
+  preserveHostHdr: true,
 
   intercept: function(rsp, data, req, res, callback) {
     var contentType = res._headers['content-type'];
     var mappingUrl = req.originalUrl;
+
+    // if( res.statusCode == 301 ) {
+    //   console.log("MALDITO");
+    //   console.log("MALDITO");
+    //   console.log("MALDITO");
+    //   console.log("MALDITO");
+    //   console.log("MALDITO");
+    //   console.log("MALDITO");
+    //   console.log("MALDITO");
+    //   res.sendStatus(200);
+    // }
 
     if ( contentType ) {
       if( contentType.match(/html/g) ) {
@@ -120,15 +135,18 @@ app.use('/', proxy(routesEndpoint[0], {
         /* Define Host and HostVar */
         defineHostVariables(req);
 
+        //console.log('RESS', res);
 
         data = data.toString('utf8');
         /* Load Html into Cheerio to be our manageable DOM */
         $ = cheerio.load(data);
+        // Start App core module
+        require('./app/scripts/index.js')(callback, data, mappingUrl, contentType);
+        //callback(null, data);
+      } else {
+        callback(null, data);
       }
     }
-
-    // Start App core module
-    require('./app/scripts/index.js')(callback, data, mappingUrl, contentType);
   }
 }));
 
@@ -140,6 +158,6 @@ var httpServer = http.createServer(app);
 var httpPort = process.env.PORT || 80;
 httpServer.listen(httpPort, function() {
   updateHostFile();
-  console.log('Access your project on: ' + routesHost[0] );
+  console.log('Access your project on: ' + routesHost[0]);
 });
 //httpsServer.listen(8443);

@@ -1,8 +1,5 @@
 {
-  "routes": [
-    "mlocal.pampaburger.com.br => www.pampaburger.com.br",
-    "mlocal.pampaburger.com.br => pampaburger.com.br",
-    "mlocal.konsole.studio => www.konsole.studio",
-    "mlocal.konsole.studio => konsole.studio"
+  "route": [
+    "mlocal.pampaburger.com.br => pampaburger.com.br"
   ]
 }
