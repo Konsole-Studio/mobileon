@@ -5,7 +5,9 @@ var https = require('https');
 var proxy = require('express-http-proxy');
 var domain = require('domain');
 var d = domain.create();
+var sassMiddleware = require('node-sass-middleware');
 fs = require('fs');
+var path = require('path');
 var cleanup = require('./cleanup').Cleanup(cleanupHosts);
 cheerio = require('cheerio');
 
@@ -45,7 +47,7 @@ function updateHostFile(siteUrl, host) {
         newHostsContent = hostsContent + '\n# FIRST TOUCH AUTO GENERATED HOSTS'
                                        + '\n' + '127.0.0.1' + '\t' + 'mlocal.' + siteUrl;
 
-        /* Verify if readFile was successful to avoid Heroku issues */
+        /* Verify if writeFile is successful to avoid Heroku issues */
         d.run(function() {
           fs.writeFile('/etc/hosts', newHostsContent, function (err) {
             if (err) throw err;
@@ -60,8 +62,6 @@ function cleanupHosts() {
     fs.writeFileSync('/etc/hosts', originalHosts);
 };
 
-app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -73,6 +73,21 @@ app.use(function(req, res, next) {
       next();
     }
 });
+
+app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
+
+app.use(sassMiddleware({
+  /* Options */
+  src: path.join(__dirname, '/app/assets/stylesheets'),
+  dest: __dirname + '/app/assets/stylesheets/css',
+  debug: true,
+  force: true,
+  outputStyle: 'nested',
+  prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="styles/style.css"/>
+}));
+
+app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
+app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
 app.use('/', proxy(siteUrl, {
 

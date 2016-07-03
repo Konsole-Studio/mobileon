@@ -14,7 +14,8 @@
     "express-http-proxy": "^0.7.2",
     "htmlparser2": "^3.9.1",
     "http-proxy": "^1.14.0",
-    "lodash": "^2.0.0"
+    "lodash": "^2.0.0",
+    "node-sass-middleware": "^0.9.8"
   },
   "repository": {
     "type": "git",
