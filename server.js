@@ -30,7 +30,7 @@ function updateHostFile(siteUrl, host) {
     if (err) {
       return console.log(err);
     }
-
+    console.log("HOSTS CONTENT: " + hostsContent);
     /* Verify if readFile was successful to avoid Heroku issues */
     if ( hostsContent ) {
       originalHosts = hostsContent;
