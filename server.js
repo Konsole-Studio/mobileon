@@ -31,19 +31,23 @@ function updateHostFile(siteUrl, host) {
       return console.log(err);
     }
     console.log("HOSTS CONTENT: " + hostsContent);
-    /* Verify if readFile was successful to avoid Heroku issues */
-    if ( hostsContent ) {
+
       originalHosts = hostsContent;
       siteUrlRegex = new RegExp(siteUrl, 'g');
 
       if ( !hostsContent.match(siteUrlRegex) ) {
-      newHostsContent = hostsContent + '\n# FIRST TOUCH AUTO GENERATED HOSTS'
-                                     + '\n' + '127.0.0.1' + '\t' + 'mlocal.' + siteUrl;
-        fs.writeFile('/etc/hosts', newHostsContent, function (err) {
-          if (err) throw err;
-        });
+        newHostsContent = hostsContent + '\n# FIRST TOUCH AUTO GENERATED HOSTS'
+                                       + '\n' + '127.0.0.1' + '\t' + 'mlocal.' + siteUrl;
+
+        /* Verify if readFile was successful to avoid Heroku issues */
+        try {
+          fs.writeFile('/etc/hosts', newHostsContent, function (err) {
+            if (err) throw err;
+          });
+        } catch(error) {
+          console.log('Couldn\'t modify hosts file, be sure to run the server as Root');
+        }
       }
-    }
   });
 }
 
