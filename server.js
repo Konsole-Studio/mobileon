@@ -15,11 +15,12 @@ var originalHosts = '';
 function defineHost(req) {
   host = req.headers.host;
   console.log('Host: ' + host);
-  if( host.match(/localhost/g) ) {
-    hostVar = 'mlocal.';
-  } else {
-    hostVar = 'm.';
-  }
+  // if( host.match(/localhost/g) ) {
+  //   hostVar = 'mlocal.';
+  // } else {
+  //   hostVar = 'm.';
+  // }
+  hostVar = 'mlocal.';
   console.log("Hostvar " + hostVar);
   hostComplete = hostVar + host;
   console.log('Complete: ' + hostComplete);
@@ -30,7 +31,6 @@ function updateHostFile(siteUrl, host) {
     if (err) {
       return console.log(err);
     }
-    console.log("HOSTS CONTENT: " + hostsContent);
 
       originalHosts = hostsContent;
       siteUrlRegex = new RegExp(siteUrl, 'g');
@@ -40,13 +40,14 @@ function updateHostFile(siteUrl, host) {
                                        + '\n' + '127.0.0.1' + '\t' + 'mlocal.' + siteUrl;
 
         /* Verify if readFile was successful to avoid Heroku issues */
-        try {
-          fs.writeFile('/etc/hosts', newHostsContent, function (err) {
-            if (err) throw err;
-          });
-        } catch(error) {
-          console.log('Couldn\'t modify hosts file, be sure to run the server as Root');
-        }
+        // try {
+        //   fs.writeFile('/etc/hosts', newHostsContent, function (err) {
+        //     if (err) throw err;
+        //   });
+        // } catch(error) {
+        //   console.log('Couldn\'t modify hosts file, be sure to run the server as Root');
+        // }
+        fs.writeFileSync('/etc/hosts', newHostsContent);
       }
   });
 }
