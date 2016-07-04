@@ -1,5 +1,6 @@
 {
   "route": [
-    "mlocal.pampaburger.com.br => pampaburger.com.br"
+    "mlocal.globo.com => globo.com",
+    "mlocal.stage.globo.com => stage.globo.com"
   ]
 }

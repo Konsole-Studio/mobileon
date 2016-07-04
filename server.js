@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-var http = require('http');
-var https = require('https');
+var http = require('follow-redirects').http;
+var https = require('follow-redirects').https;
 var proxy = require('express-http-proxy');
 var domain = require('domain');
 var d = domain.create();
@@ -96,8 +96,6 @@ app.use(function(req, res, next) {
     }
 });
 
-app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
-
 app.use(sassMiddleware({
   /* Options */
   src: path.join(__dirname, '/app/assets/stylesheets'),
@@ -112,45 +110,41 @@ app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
 app.use('/', proxy(routesEndpoint[0], {
-  preserveHostHdr: true,
+
+  preIntercept: function(res) {
+    // If we must preIntercept something
+  },
+
+  decorateRequest: function(req) {
+    req.headers[ 'Accept-Encoding' ] = 'utf8';
+    delete req.headers['if-modified-since'];
+    delete req.headers['if-none-match'];
+    return req;
+  },
 
   intercept: function(rsp, data, req, res, callback) {
     var contentType = res._headers['content-type'];
     var mappingUrl = req.originalUrl;
 
-    // if( res.statusCode == 301 ) {
-    //   console.log("MALDITO");
-    //   console.log("MALDITO");
-    //   console.log("MALDITO");
-    //   console.log("MALDITO");
-    //   console.log("MALDITO");
-    //   console.log("MALDITO");
-    //   console.log("MALDITO");
-    //   res.sendStatus(200);
-    // }
-
     if ( contentType ) {
       if( contentType.match(/html/g) ) {
-
         /* Define Host and HostVar */
         defineHostVariables(req);
 
-        //console.log('RESS', res);
-
+        /* Convert data into UTF-8 String */
         data = data.toString('utf8');
+
         /* Load Html into Cheerio to be our manageable DOM */
-        $ = cheerio.load(data);
+        $ = cheerio.load(data, {decodeEntities: false});
+
         // Start App core module
         require('./app/scripts/index.js')(callback, data, mappingUrl, contentType);
-        //callback(null, data);
       } else {
         callback(null, data);
       }
     }
   }
 }));
-
-// app.use("/app", express.static(__dirname + '/ux'));
 
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
