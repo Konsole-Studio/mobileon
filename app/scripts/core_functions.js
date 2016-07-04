@@ -34,20 +34,30 @@ rewriteLink = function(link) {
   if (/^mailto:/.test(link)) {
       return link;
   }
-  return link.replace(/((?:(?:(?:http(?:s?)):)?(?:\/\/)?(?:(?:[a-zA-Z0-9][a-zA-Z0-9\-]*)(?:\.[\.a-zA-Z0-9\-]*)|localhost))(?:\:[0-9]+)?)/gi, function(hostHH) {
-      var rewritten = rewriterCore(hostHH);
+  return link.replace(/((?:(?:(?:http(?:s?)):)?(?:\/\/)?(?:(?:[a-zA-Z0-9][a-zA-Z0-9\-]*)(?:\.[\.a-zA-Z0-9\-]*)|localhost))(?:\:[0-9]+)?)/gi, function(originalUrl) {
+      var rewritten = rewriterCore(originalUrl);
       return rewritten;
   });
 }
 
-rewriterCore = function (hostHH) {
+rewriterCore = function (originalUrl) {
   // TODO: KEEP http or https protocol, fix links opening after /
-  hostHH = hostHH.replace(/www\./, '')
-                 .replace(/https:\/\//, '')
-                 .replace(/http:\/\//, '');
-  hostHH = '//mlocal.' + hostHH;
-  console.log(hostHH);
-  return hostHH;
+  var isHttp, isHttps = false
+  var httpRegex = new RegExp('http://', 'gi');
+  var httpsRegex = new RegExp('http://', 'gi');
+
+  originalUrl.match(httpRegex) ? isHttp = true : null;
+  originalUrl.match(httpsRegex) ? isHttps = true : null;
+
+  originalUrl = originalUrl.replace(/www\./, '')
+                 .replace(httpRegex, '')
+                 .replace(httpsRegex, '');
+
+  isHttp ? originalUrl = 'http://mlocal.' + originalUrl : null;
+  isHttps ? originalUrl = 'https://mlocal.' + originalUrl : null;
+
+  console.log(originalUrl);
+  return originalUrl;
 }
 
 fixPampaImgSrc = function() {
