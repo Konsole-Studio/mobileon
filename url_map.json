@@ -2,7 +2,7 @@
   "route": [
     "app-ft.konsole.studio => konsole.studio",
     "app-ft.m.konsole.studio => m.konsole.studio",
-    "app-ft.g1.globo.herokuapp.com => g1.globo.com",
+    "app-ft.globo.herokuapp.com => globo.com",
     "app-ft.pampaburger.com.br => pampaburger.com.br",
     "app-ft.intelimen.com.br => intelimen.com.br"
   ]
