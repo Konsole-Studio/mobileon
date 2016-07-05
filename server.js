@@ -130,7 +130,8 @@ app.use(function(req, res, next) {
     console.log('CURRENT HOST ORIGIN: ' + hostOrigin);
     if( currentHost.match(hostOriginRegExp) ) {
       console.log('[Proxy] Will proxy domain: ' + currentEndpoint);
-      proxyInstance = proxy(currentEndpoint, proxyOptions);
+    //  proxyInstance = proxy(currentEndpoint, proxyOptions);
+      proxyInstance = proxy('http://konsole.studio', proxyOptions);
       proxyInstance(req, res, next);
     }
   }
