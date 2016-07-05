@@ -114,12 +114,15 @@ app.use(function(req, res, next) {
   hostOrigin = req.headers['host'];
 
 
-  /* Verify if heroku or development */
+  /* Verify if development, heroku or production */
   if( hostOrigin.match(/herokuapp/g) ) {
     environment = 'heroku';
     hostOrigin = hostOrigin.replace(/\.herokuapp\.com/g, '');
+  } else if ( hostOrigin.match(/mobile\./g) ) {
+    hostOrigin = hostOrigin.replace(/\mobile\./g, '');
+    environment = 'production';
   }
-  
+
   for( var i=0; i < routesHost.length; i++ ) {
     var hostOriginRegExp = new RegExp(hostOrigin, 'gi');
     var currentHost = routesHost[i];
