@@ -11,7 +11,7 @@ module.exports = function(callback, data, mappingUrl, contentType) {
     //removeAllStyles();
     //removeJS();
     removeHtmlComments();
-    rewriteLinks();
+    //rewriteLinks();
     //absolutizeSrcs();
     insertVendorScripts();
     fixPampaImgSrc();

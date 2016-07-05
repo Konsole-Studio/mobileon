@@ -112,13 +112,20 @@ app.use(function(req, res, next) {
   /*  TODO: Proxy Router */
   hostOrigin = req.headers['host'];
 
-  console.log(hostOrigin);
-  hostOrigin = hostOrigin.replace(/appft\-/g, '')
-                         .replace(/\.herokuapp/g, '');
-  console.log('Will proxy: ' + hostOrigin);
+  //console.log(hostOrigin);
+  // hostOrigin = hostOrigin.replace(/appft\-/g, '')
+  //                        .replace(/\.herokuapp/g, '');
 
-  proxyInstance = proxy(hostOrigin, proxyOptions);
-  proxyInstance(req, res, next);
+  for( var i=0; i < routesHost.length; i++ ) {
+    var hostOriginRegExp = new RegExp(hostOrigin, 'gi');
+    var currentHost = routesHost[i];
+    var currentEndpoint = routesEndpoint[i];
+    if( currentHost.match(hostOriginRegExp) ) {
+      console.log('Will proxy: ' + currentEndpoint);
+      proxyInstance = proxy(currentEndpoint, proxyOptions);
+      proxyInstance(req, res, next);
+    }
+  }
 });
 
 
