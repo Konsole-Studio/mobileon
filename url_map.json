@@ -1,6 +1,6 @@
 {
   "route": [
-    "ftapp-g1.globo.com => g1.globo.com",
-    "ftapp-globo.com => globo.com"
+    "mlocal.g1.globo.com => g1.globo.com",
+    "mlocal.globo.com => globo.com"
   ]
 }

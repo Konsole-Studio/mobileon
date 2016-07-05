@@ -34,7 +34,7 @@ rewriteLink = function(link) {
   if (/^mailto:/.test(link)) {
       return link;
   }
-  return link.replace(/((?:(?:(?:http(?:s?)):)?(?:\/\/)?(?:(?:[a-zA-Z0-9][a-zA-Z0-9\-]*)(?:\.[\.a-zA-Z0-9\-]*)|localhost))(?:\:[0-9]+)?)/gi, function(originalUrl) {
+  return link.replace(/((?:(?:(?:http(?:s?)):)?(?:\/\/)?(?:(?:[a-zA-Z0-9][a-zA-Z0-9\-]*)(?:\.[\.a-zA-Z0-9\-]*)|localhost))(?:\:[0-9]+)?)/, function(originalUrl) {
       var rewritten = rewriterCore(originalUrl);
       return rewritten;
   });
@@ -48,12 +48,14 @@ rewriterCore = function (originalUrl) {
 
   originalUrl.match(httpRegex) ? isHttp = true : null;
   originalUrl.match(httpsRegex) ? isHttps = true : null;
-
+  
   originalUrl = originalUrl.replace(/www\./, '')
                  .replace(httpRegex, '')
                  .replace(httpsRegex, '');
 
-  originalUrl = isHttps ? 'https://mlocal.' + originalUrl : 'http://mlocal.' + originalUrl;
+  console.log(originalUrl);
+
+  originalUrl = isHttps ? 'https://' + hostPath : 'http://' + hostPath;
   return originalUrl;
 }
 

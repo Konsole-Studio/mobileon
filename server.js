@@ -109,14 +109,15 @@ app.use(function(req, res, next) {
     res.sendStatus(200);
   }
 
-  /* Proxy Router */
-  hostOrigin = req.headers['host'];
+  /*  TODO: Proxy Router */
+  // hostOrigin = req.headers['host'];
+  //
+  // console.log(hostOrigin);
+  // hostOrigin = hostOrigin.replace(/ftapp\-/g, '')
+  //                        .replace(/\.herokuapp/g, '');
+  // console.log('Will proxy: ' + hostOrigin);
 
-  console.log(hostOrigin);
-  hostOrigin = hostOrigin.replace(/ftapp\-/g, '')
-                         .replace(/\.herokuapp/g, '');
-  console.log('Will proxy: ' + hostOrigin);
-  proxyInstance = proxy(hostOrigin, proxyOptions);
+  proxyInstance = proxy(routesEndpoint[0], proxyOptions);
   proxyInstance(req, res, next);
 });
 
@@ -171,8 +172,6 @@ proxyOptions = {
     }
   }
 }
-
-
 
 
 //var mobileDomain = proxy('m.konsole.studio', proxyOptions);
