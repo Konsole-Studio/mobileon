@@ -56,7 +56,7 @@ rewriterCore = function (originalUrl) {
 
   console.log(originalUrl);
 
-
+  /* TODO: rewrite urls when on heroku */
   originalUrl = isHttps ? 'https://appft-' + originalUrl : 'https://appft-' + originalUrl;
   return originalUrl;
 }
