@@ -110,14 +110,14 @@ app.use(function(req, res, next) {
   }
 
   /*  TODO: Proxy Router */
-  // hostOrigin = req.headers['host'];
-  //
-  // console.log(hostOrigin);
-  // hostOrigin = hostOrigin.replace(/ftapp\-/g, '')
-  //                        .replace(/\.herokuapp/g, '');
-  // console.log('Will proxy: ' + hostOrigin);
+  hostOrigin = req.headers['host'];
 
-  proxyInstance = proxy(routesEndpoint[0], proxyOptions);
+  console.log(hostOrigin);
+  hostOrigin = hostOrigin.replace(/appft\-/g, '')
+                         .replace(/\.herokuapp/g, '');
+  console.log('Will proxy: ' + hostOrigin);
+
+  proxyInstance = proxy(hostOrigin, proxyOptions);
   proxyInstance(req, res, next);
 });
 

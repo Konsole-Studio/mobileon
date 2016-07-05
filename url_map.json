@@ -1,6 +1,6 @@
 {
   "route": [
-    "mlocal.g1.globo.com => g1.globo.com",
-    "mlocal.globo.com => globo.com"
+    "appft-g1.globo.com => g1.globo.com",
+    "appft-globo.com => globo.com"
   ]
 }
