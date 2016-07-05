@@ -112,6 +112,7 @@ app.use(function(req, res, next) {
   /* Proxy Router */
   hostOrigin = req.headers['host'];
 
+  console.log(hostOrigin);
   hostOrigin = hostOrigin.replace(/app\-ft\./g, '')
                          .replace(/\.herokuapp/g, '');
   console.log('Will proxy: ' + hostOrigin);
