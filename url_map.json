@@ -1,9 +1,6 @@
 {
   "route": [
-    "app-ft-konsole.studio => konsole.studio",
-    "app-ft-m.konsole.studio => m.konsole.studio",
-    "app-ft-globo.herokuapp.com => globo.com",
-    "app-ft-pampaburger.com.br => pampaburger.com.br",
-    "app-ft-intelimen.com.br => intelimen.com.br"
+    "ftapp-g1.globo.com => g1.globo.com",
+    "ftapp-globo.com => globo.com"
   ]
 }

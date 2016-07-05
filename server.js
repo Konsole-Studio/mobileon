@@ -113,7 +113,7 @@ app.use(function(req, res, next) {
   hostOrigin = req.headers['host'];
 
   console.log(hostOrigin);
-  hostOrigin = hostOrigin.replace(/app\-ft\-/g, '')
+  hostOrigin = hostOrigin.replace(/ftapp\-/g, '')
                          .replace(/\.herokuapp/g, '');
   console.log('Will proxy: ' + hostOrigin);
   proxyInstance = proxy(hostOrigin, proxyOptions);
