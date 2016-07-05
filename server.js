@@ -120,9 +120,10 @@ app.use(function(req, res, next) {
     var hostOriginRegExp = new RegExp(hostOrigin, 'gi');
     var currentHost = routesHost[i];
     var currentEndpoint = routesEndpoint[i];
+    console.log('CURRENT HOST: ' + currentHost);
     if( currentHost.match(hostOriginRegExp) ) {
       console.log('Should proxy: ' + currentEndpoint);
-      
+
       // proxyInstance = proxy(currentEndpoint, proxyOptions);
       // proxyInstance(req, res, next);
     }
