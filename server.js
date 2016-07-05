@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('follow-redirects').http;
 var https = require('follow-redirects').https;
-var proxy = require('express-http-proxy');
+proxy = require('express-http-proxy');
 var domain = require('domain');
 var d = domain.create();
 var sassMiddleware = require('node-sass-middleware');
@@ -22,6 +22,9 @@ var routesEndpoint = [];
 var routesHost = [];
 
 var originalHosts = '';
+
+hostOrigin = '';
+hostPath = '';
 
 getRoutes();
 getRoutesEndpoint();
@@ -51,9 +54,9 @@ function getRoutesHost() {
 
 function defineHostVariables(req) {
   host = req.headers.host;
-  console.log('Host: ' + host);
+  //console.log('Host: ' + host);
   hostVar = host.split('.')[0];
-  console.log("Hostvar " + hostVar);
+  //console.log("Hostvar " + hostVar);
 }
 
 function updateHostFile() {
@@ -84,18 +87,6 @@ function cleanupHosts() {
     fs.writeFileSync('/etc/hosts', originalHosts);
 };
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    // intercept OPTIONS method
-    if( 'OPTIONS' == req.method ) {
-      res.sendStatus(200);
-    }
-    else {
-      next();
-    }
-});
-
 app.use(sassMiddleware({
   /* Options */
   src: path.join(__dirname, '/app/assets/stylesheets'),
@@ -109,7 +100,28 @@ app.use(sassMiddleware({
 app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
-app.use('/', proxy(routesEndpoint[0], {
+/* Request handler */
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // intercept OPTIONS method
+  if( 'OPTIONS' == req.method ) {
+    res.sendStatus(200);
+  }
+
+  /* Proxy Router */
+  hostOrigin = req.headers['host'];
+
+  hostOrigin = hostOrigin.replace(/app\-ft\./g, '')
+                         .replace(/\.herokuapp/g, '');
+  console.log('Will proxy: ' + hostOrigin);
+  proxyInstance = proxy(hostOrigin, proxyOptions);
+  proxyInstance(req, res, next);
+});
+
+
+
+proxyOptions = {
 
   preIntercept: function(res) {
     // If we must preIntercept something
@@ -126,8 +138,20 @@ app.use('/', proxy(routesEndpoint[0], {
     var contentType = res._headers['content-type'];
     var mappingUrl = req.originalUrl;
 
+    // hostPath = req.headers['referer'];
+    // console.log('loganderson ' + hostPath)
+
     if ( contentType ) {
       if( contentType.match(/html/g) ) {
+
+        if( typeof req.headers['referer'] == 'string' ) {
+          hostPath = req.headers['referer'];
+          console.log('Host REFER: ', hostPath);
+        } else {
+          hostPath = req.headers['host'];
+          console.log('Host Without refer: ', hostPath);
+        }
+
         /* Define Host and HostVar */
         defineHostVariables(req);
 
@@ -138,13 +162,20 @@ app.use('/', proxy(routesEndpoint[0], {
         $ = cheerio.load(data, {decodeEntities: false});
 
         // Start App core module
+        //callback(null, data);
         require('./app/scripts/index.js')(callback, data, mappingUrl, contentType);
       } else {
         callback(null, data);
       }
     }
   }
-}));
+}
+
+
+
+
+//var mobileDomain = proxy('m.konsole.studio', proxyOptions);
+
 
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);

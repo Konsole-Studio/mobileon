@@ -8,10 +8,11 @@ module.exports = function(callback, data, mappingUrl, contentType) {
     require('./keep_js.js')();
     require('./core_functions.js');
 
-    removeAllStyles();
-    removeJS();
+    //removeAllStyles();
+    //removeJS();
     removeHtmlComments();
     rewriteLinks();
+    //absolutizeSrcs();
     insertVendorScripts();
     fixPampaImgSrc();
     insertMainStyle();
