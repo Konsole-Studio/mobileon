@@ -25,6 +25,7 @@ var originalHosts = '';
 
 hostOrigin = '';
 hostPath = '';
+environment = 'dev';
 
 getRoutes();
 getRoutesEndpoint();
@@ -112,9 +113,13 @@ app.use(function(req, res, next) {
   /*  TODO: Proxy Router */
   hostOrigin = req.headers['host'];
 
-  //console.log(hostOrigin);
-   hostOrigin = hostOrigin.replace(/\.herokuapp\.com/g, '');
 
+  /* Verify if heroku or development */
+  if( hostOrigin.match(/herokuapp/g) ) {
+    environment = 'heroku';
+    hostOrigin = hostOrigin.replace(/\.herokuapp\.com/g, '');
+  }
+  
   for( var i=0; i < routesHost.length; i++ ) {
     var hostOriginRegExp = new RegExp(hostOrigin, 'gi');
     var currentHost = routesHost[i];

@@ -48,14 +48,16 @@ rewriterCore = function (originalUrl) {
 
   originalUrl.match(httpRegex) ? isHttp = true : null;
   originalUrl.match(httpsRegex) ? isHttps = true : null;
-  
+
   originalUrl = originalUrl.replace(/www\./, '')
                  .replace(httpRegex, '')
-                 .replace(httpsRegex, '');
+                 .replace(httpsRegex, '')
+                 .replace(/\./g, '-');
 
   console.log(originalUrl);
 
-  originalUrl = isHttps ? 'https://' + hostPath : 'http://' + hostPath;
+
+  originalUrl = isHttps ? 'https://appft-' + originalUrl : 'https://appft-' + originalUrl;
   return originalUrl;
 }
 
