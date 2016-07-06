@@ -2,5 +2,7 @@
   "route": [
     "mlocal.konsole.studio => konsole.studio",
     "mlocal.staging.konsole.studio  => staging.konsole.studio",
+    "mlocal.globo.com => globo.com",
+    "mlocal.g1.globo.com => g1.globo.com"
   ]
 }

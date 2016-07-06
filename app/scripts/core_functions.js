@@ -12,12 +12,12 @@ removeJS = function() {
 
 insertVendorScripts = function() {
   /* TODO: Optimize this, read all files from /vendor folder */
-  head.append('<script src="http://' + host + '/vendor/jquery-2.1.3.js"></script>');
-  head.append('<script src="http://' + host + '/vendor/jquery.DOMNodeAppear.js"></script>');
+  head.append('<script src="http://' + hostPath + '/vendor/jquery-2.1.3.js"></script>');
+  head.append('<script src="http://' + hostPath + '/vendor/jquery.DOMNodeAppear.js"></script>');
 }
 
 insertMainStyle = function() {
-  head.append('<link rel="stylesheet" href="http://' + host + '/styles/style.css">');
+  head.append('<link rel="stylesheet" href="http://' + hostPath + '/styles/style.css">');
 }
 
 rewriteLinks = function() {
@@ -41,24 +41,34 @@ rewriteLink = function(link) {
 }
 
 rewriterCore = function (originalUrl) {
-
+  var untouchedUrl = originalUrl
   var isHttp, isHttps = false
   var httpRegex = new RegExp('http://', 'gi');
   var httpsRegex = new RegExp('http://', 'gi');
+  var hostOriginRegex = new RegExp('^' + hostOrigin, 'gi');
 
   originalUrl.match(httpRegex) ? isHttp = true : null;
   originalUrl.match(httpsRegex) ? isHttps = true : null;
 
   originalUrl = originalUrl.replace(/www\./, '')
                  .replace(httpRegex, '')
-                 .replace(httpsRegex, '')
-                 .replace(/\./g, '-');
+                 .replace(httpsRegex, '');
 
-  console.log(originalUrl);
+  console.log("HOST PATH: " + hostPath);
+  console.log("PROXIED DOMAIN: " + hostOrigin);
+  console.log("HOST VAR: " + hostVar);
+  console.log("ORIGINAL LINK: " + originalUrl);
 
-  /* TODO: rewrite urls when on heroku */
-  originalUrl = isHttps ? 'https://appft-' + originalUrl : 'https://appft-' + originalUrl;
-  return originalUrl;
+  if ( originalUrl.match(hostOriginRegex) ) {
+    originalUrl = isHttps ? 'https://' + hostVar + originalUrl : 'http://' + hostVar + originalUrl;
+    console.log("FINAL LINK: " + originalUrl);
+    return originalUrl;
+  } else {
+    console.log("UNTOUCHED LINK: " + untouchedUrl);
+    return untouchedUrl;
+  }
+
+
 }
 
 // slashPath = function() {
