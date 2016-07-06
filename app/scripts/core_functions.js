@@ -81,20 +81,12 @@ rewriterCore = function (originalUrl) {
 }
 
 mobileMetaTag = function() {
-  // var metaTags = head.find('meta');
-  // metaTags.each(function(index, metaTag) {
-  //   console.log("Meta tag " + metaTag.getAttribute('name'));
-  // });
-  // for( var i=0; i < metaTagNames.length; i++  ) {
-  //   console.log("passando no for");
-  //   //var attrName = metaTags[i].getAttribute('name');
-  //   console.log('Name: ', metaTagNames[i]);
-  //   // if( attrName.match(/viewport/g) ) {
-  //   //   console.log('MATCH NAME: ', attrName);
-  //   //   metaTags[i].remove();
-  //   // }
-  // }
-  head.prepend('<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">');
+  var originalMetaTag = head.find('meta[name="viewport"]');
+  if( originalMetaTag ) {
+    originalMetaTag.attr('content', 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no');
+  } else {
+    head.append('<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">');
+  }
 }
 
 removeHtmlComments = function() {
