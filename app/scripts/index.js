@@ -5,22 +5,29 @@ module.exports = function(callback, data, mappingUrl, contentType) {
   body = $('body');
   head = $('head');
 
-  require('./keep_js.js')();
-  require('./core_functions.js');
+  /* Remove or keep script files */
+  require('./keep_js.js');
 
+  /* Import core/custom functions */
+  require('./core_functions.js');
+  require('./custom_functions.js');
+
+  /* Core functions execution */
   removeAllStyles();
   removeJS();
   removeHtmlComments();
   rewriteLinks();
-  //absolutizeSrcs();
+  mobileMetaTag();
   insertVendorScripts();
-  fixPampaImgSrc();
   insertMainStyle();
 
+  /* Custom functions execution */
+  fixPampaImgSrc();
+
+  /* Import mappings */
   require('./mapping.js')(mappingUrl, contentType);
 
+  /* Output final content */
   finalHtml = $('html').toString();
-  // Output final content
   callback(null, finalHtml);
-
 };

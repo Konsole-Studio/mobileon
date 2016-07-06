@@ -1,3 +1,8 @@
+/**
+ * These are the core functions of the application
+ * Do not create custom functions on this file, use custom_functions.js instead.
+ */
+
 removeAllStyles = function() {
   html.find('link[rel="stylesheet"], style').remove();
 }
@@ -73,10 +78,11 @@ rewriterCore = function (originalUrl) {
     //console.log("UNTOUCHED LINK: " + untouchedUrl);
     return untouchedUrl;
   }
-
-
 }
 
+mobileMetaTag = function() {
+  head.append('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+}
 
 removeHtmlComments = function() {
   function isComment(index, node) {
@@ -87,21 +93,12 @@ removeHtmlComments = function() {
   body.contents().filter(isComment).remove();
 }
 
-fixPampaImgSrc = function() {
-  html.find('img.temp_no_img_src').each(function(i, elem) {
-    var fixedSrc = $(this).attr('data-orig-src');
-    $(this).removeClass('temp_no_img_src');
-    $(this).attr('src', fixedSrc);
-  });
-}
-
 module.exports = {
   removeAllStyles: removeAllStyles,
   removeJS: removeJS,
   insertVendorScripts: insertVendorScripts,
-  fixPampaImgSrc: fixPampaImgSrc,
   insertMainStyle: insertMainStyle,
   removeHtmlComments: removeHtmlComments,
+  mobileMetaTag: mobileMetaTag,
   rewriteLinks: rewriteLinks
-  //absolutizeSrcs: absolutizeSrcs
 };
