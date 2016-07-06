@@ -17,8 +17,8 @@ removeJS = function() {
 
 insertVendorScripts = function() {
   /* TODO: Optimize this, read all files from /vendor folder */
-  head.append('<script src="http://' + hostPath + '/vendor/jquery-2.1.3.js"></script>');
-  head.append('<script src="http://' + hostPath + '/vendor/jquery.DOMNodeAppear.js"></script>');
+  head.append('<script src="//' + hostPath + '/vendor/jquery-2.1.3.js"></script>');
+  head.append('<script src="//' + hostPath + '/vendor/jquery.DOMNodeAppear.js"></script>');
 }
 
 insertMainStyle = function() {
