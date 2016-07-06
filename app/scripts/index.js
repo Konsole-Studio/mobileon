@@ -24,6 +24,10 @@ module.exports = function(callback, data, mappingUrl, contentType) {
   /* Custom functions execution */
   fixPampaImgSrc();
 
+  /* Import common sections */
+  require('./sections/header.js');
+  require('./sections/footer.js');
+
   /* Import mappings */
   require('./mapping.js')(mappingUrl, contentType);
 
