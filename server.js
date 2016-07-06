@@ -54,13 +54,6 @@ function getRoutesHost() {
   }
 }
 
-// function defineHostVariables(req) {
-//   host = req.headers.host;
-//   //console.log('Host: ' + host);
-//   hostVar = host.split('.')[0];
-//   //console.log("Hostvar " + hostVar);
-// }
-
 function updateHostFile() {
   fs.readFile('/etc/hosts', 'utf8', function (err, hostsContent) {
     if (err) {
@@ -191,8 +184,9 @@ proxyOptions = {
           console.log('Host Without refer: ', hostPath);
         }
 
-        /* Define Host and HostVar */
-        //defineHostVariables(req);
+        hostPath = hostPath.replace(/^https\:\/\//g, '')
+                           .replace(/^http\:\/\//g, '')
+                           .replace(/(\/.*)/g, '');
 
         /* Convert data into UTF-8 String */
         data = data.toString('utf8');

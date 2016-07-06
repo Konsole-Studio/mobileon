@@ -54,17 +54,23 @@ rewriterCore = function (originalUrl) {
                  .replace(httpRegex, '')
                  .replace(httpsRegex, '');
 
-  console.log("HOST PATH: " + hostPath);
-  console.log("PROXIED DOMAIN: " + hostOrigin);
-  console.log("HOST VAR: " + hostVar);
-  console.log("ORIGINAL LINK: " + originalUrl);
+  // console.log("HOST PATH: " + hostPath);
+  // console.log("PROXIED DOMAIN: " + hostOrigin);
+  // console.log("HOST VAR: " + hostVar);
+  // console.log("ORIGINAL LINK: " + originalUrl);
+
+  if ( hostPath.match(/\//g) ) {
+
+  }
 
   if ( originalUrl.match(hostOriginRegex) ) {
-    originalUrl = isHttps ? 'http://' + hostPath : 'http://' + hostPath;
-    console.log("FINAL LINK: " + originalUrl);
+    originalUrl = isHttps ? '//' + hostPath : '//' + hostPath;
+    // console.log("HOST PATH: " + hostPath);
+    // console.log("ORIGINAL LINK: " + originalUrl);
+    // console.log("FINAL LINK: " + originalUrl);
     return originalUrl;
   } else {
-    console.log("UNTOUCHED LINK: " + untouchedUrl);
+    //console.log("UNTOUCHED LINK: " + untouchedUrl);
     return untouchedUrl;
   }
 
