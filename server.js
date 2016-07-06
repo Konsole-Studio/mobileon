@@ -204,10 +204,6 @@ proxyOptions = {
   }
 }
 
-
-//var mobileDomain = proxy('m.konsole.studio', proxyOptions);
-
-
 var httpServer = http.createServer(app);
 //var httpsServer = https.createServer(credentials, app);
 
