@@ -22,7 +22,7 @@ insertVendorScripts = function() {
 }
 
 insertMainStyle = function() {
-  head.append('<link rel="stylesheet" href="http://' + hostPath + '/styles/style.css">');
+  head.append('<link rel="stylesheet" href="//' + hostPath + '/styles/style.css">');
 }
 
 rewriteLinks = function() {

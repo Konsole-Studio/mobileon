@@ -15,6 +15,6 @@ module.exports = function(mappingUrl) {
     }
   );
 
-  /* Page provider will import a file according to mapping */
+  /* Router will import a file according to mapping */
   require('./router')(pageTypes, mappingUrl);
 };
