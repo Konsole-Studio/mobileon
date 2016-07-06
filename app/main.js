@@ -6,11 +6,11 @@ module.exports = function(callback, data, mappingUrl, contentType) {
   head = $('head');
 
   /* Remove or keep script files */
-  require('./keep_js.js');
+  require('./scripts/keep_js.js');
 
   /* Import core/custom functions */
-  require('./core_functions.js');
-  require('./custom_functions.js');
+  require('./scripts/core_functions.js');
+  require('./scripts/custom_functions.js');
 
   /* Core functions execution */
   removeAllStyles();
@@ -25,11 +25,11 @@ module.exports = function(callback, data, mappingUrl, contentType) {
   fixPampaImgSrc();
 
   /* Import common sections */
-  require('./sections/header.js');
-  require('./sections/footer.js');
+  require('./scripts/sections/header.js');
+  require('./scripts/sections/footer.js');
 
   /* Import mappings */
-  require('./mapping.js')(mappingUrl, contentType);
+  require('./scripts/mapping.js')(mappingUrl, contentType);
 
   /* Output final content */
   finalHtml = $('html').toString();
