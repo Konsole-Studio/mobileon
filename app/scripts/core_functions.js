@@ -60,9 +60,16 @@ rewriterCore = function (originalUrl) {
   console.log("ORIGINAL LINK: " + originalUrl);
 
   if ( originalUrl.match(hostOriginRegex) ) {
-    originalUrl = isHttps ? 'https://' + hostVar + originalUrl : 'http://' + hostVar + originalUrl;
-    console.log("FINAL LINK: " + originalUrl);
-    return originalUrl;
+    /* Environment is development, stage or production */
+    //if ( environment != "heroku" ) {
+      originalUrl = isHttps ? 'https://' + hostPath : 'http://' + hostPath;
+      console.log("FINAL LINK: " + originalUrl);
+      return originalUrl;
+    // } else { /* Environment is heroku */
+    //   originalUrl = isHttps ? 'https://' + hostVar + originalUrl : 'http://' + hostVar + originalUrl;
+    //   console.log("FINAL LINK: " + originalUrl);
+    //   return originalUrl;
+    // }
   } else {
     console.log("UNTOUCHED LINK: " + untouchedUrl);
     return untouchedUrl;
