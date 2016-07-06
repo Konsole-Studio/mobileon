@@ -1,6 +1,6 @@
 {
   "route": [
-    "appft-konsole-studio => konsole.studio",
-    "appft-m-konsole-studio  => m.konsole.studio"
+    "mlocal.konsole.studio => konsole.studio",
+    "mlocal.staging.konsole.studio  => staging.konsole.studio",
   ]
 }

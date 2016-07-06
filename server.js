@@ -110,37 +110,51 @@ app.use(function(req, res, next) {
     res.sendStatus(200);
   }
 
-  /*  TODO: Proxy Router */
+  /* Proxy Router */
   hostOrigin = req.headers['host'];
 
-
-  /* Verify if development, heroku or production */
-  if( hostOrigin.match(/herokuapp/g) ) {
+  /* Verify if Development */
+  if ( hostOrigin.match(/mlocal/g) ) { //mlocal.konsole.studio
+    environment = 'development';
+    hostOrigin = hostOrigin.replace(/\mlocal\./g, ''); //konsole.studio
+  }
+  /* Verify if Heroku*/
+  else if( hostOrigin.match(/herokuapp/g) ) { //appft-konsole-studio.herokuapp.com
     environment = 'heroku';
-    hostOrigin = hostOrigin.replace(/\.herokuapp\.com/g, '');
-  } else if ( hostOrigin.match(/mobile\./g) ) {
-    hostOrigin = hostOrigin.replace(/\mobile\./g, '');
+    hostOrigin = hostOrigin.replace(/\.herokuapp\.com/gi, '') //appft-konsole-studio
+                           .replace(/appft\-stage\-/gi, '') //konsole-studio
+                           .replace(/appft\-/gi, '')
+                           .replace(/\-/gi, '.'); //konsole.studio
+  }
+  /* Verify if Stage */
+  else if ( hostOrigin.match(/mstage\./g) ) { //mstage.konsole.studio
+    environment = 'stage';
+    hostOrigin = hostOrigin.replace(/\mstage\./g, ''); //konsole.studio
+  }
+  /* Verify if Production */
+  else if ( hostOrigin.match(/(m\.|mobile\.)/g) ) { //m.konsole.studio / mobile.konsole.studio
     environment = 'production';
+    hostOrigin = hostOrigin.replace(/(\m\.|mobile\.)/g, ''); //konsole.studio
+  }
+  /* Verify if Test */
+  else if ( hostOrigin.match(/test\./g) ) { //test.konsole.studio
+    environment = 'test';
+    hostOrigin = hostOrigin.replace(/test\./g, ''); //konsole.studio
   }
 
-  for( var i=0; i < routesHost.length; i++ ) {
-    var hostOriginRegExp = new RegExp(hostOrigin, 'gi');
-    var currentHost = routesHost[i];
+  for( var i=0; i < routesEndpoint.length; i++ ) {
+    var hostOriginRegExp = new RegExp('^' + hostOrigin, 'gi');
     var currentEndpoint = routesEndpoint[i];
     console.log('CURRENT HOST ORIGIN: ' + hostOrigin);
-    if( currentHost.match(hostOriginRegExp) ) {
+    console.log('CURRENT MATCHING ENDPOINT:' + currentEndpoint);
+
+    if( currentEndpoint.match(hostOriginRegExp) ) { // konsole.studio == konsole.studio
       console.log('[Proxy] Will proxy domain: ' + currentEndpoint);
-    //  proxyInstance = proxy(currentEndpoint, proxyOptions);
-      proxyInstance = proxy('http://konsole.studio', proxyOptions);
+      proxyInstance = proxy(currentEndpoint, proxyOptions);
       proxyInstance(req, res, next);
     }
   }
-
-  // proxyInstance = proxy(routesEndpoint[0], proxyOptions);
-  // proxyInstance(req, res, next);
 });
-
-
 
 proxyOptions = {
 
