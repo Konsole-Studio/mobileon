@@ -5,8 +5,6 @@ module.exports = function(callback, data, mappingUrl, contentType) {
   body = $('body');
   head = $('head');
 
-  console.log("BODY: ", body);
-
   /* Remove or keep script files */
   require('./scripts/keep_js.js');
 

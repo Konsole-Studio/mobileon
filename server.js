@@ -1,15 +1,22 @@
 var express = require('express');
 var app = express();
+cheerio = require('cheerio');
+
+var sassMiddleware = require('node-sass-middleware');
+var sizeOf = require('image-size');
+
 var http = require('follow-redirects').http;
 var https = require('follow-redirects').https;
+
 proxy = require('express-http-proxy');
+
 var domain = require('domain');
 var d = domain.create();
-var sassMiddleware = require('node-sass-middleware');
+
 fs = require('fs');
 var path = require('path');
+
 var cleanup = require('./cleanup').Cleanup(cleanupHosts);
-cheerio = require('cheerio');
 var url_map = require('./url_map.json');
 
 d.on('error', function(err) {
@@ -82,6 +89,40 @@ function cleanupHosts() {
     fs.writeFileSync('/etc/hosts', originalHosts);
 };
 
+function generateSpriteSheet() {
+  var spritesLocation = path.join(__dirname, './app/assets/images/sprites/');
+  var spritesheetFile = path.join(__dirname, './app/assets/stylesheets/sprites/sprites.scss');
+  var spriteBackgroundLocation = '/sprites/';
+  var spriteSheetContent = '';
+  var classTemplate = '.$CLASS_NAME {\n' +
+                     '  background: url(\'' + spriteBackgroundLocation + '$IMAGE_NAME\') no-repeat;\n' +
+                     '  width: $IMAGE_WIDTHpx;\n' +
+                     '  height: $IMAGE_HEIGHTpx;\n' +
+                     '  display: inline-block;\n' +
+                     '}\n';
+
+  var spriteFiles = fs.readdirSync(spritesLocation);
+  for( var i=0; i < spriteFiles.length; i++ ) {
+    var spriteFile = spriteFiles[i];
+    var spriteName = spriteFile.replace(/\..*/gi, '');
+    var dimensions = sizeOf(spritesLocation + spriteFile);
+    spriteWidth = dimensions.width;
+    spriteHeigth = dimensions.height;
+    var spriteSheetMessage = '/* This file is auto generated. Your changes do not have any effect. */\n';
+    var newSpriteClass = classTemplate.replace(/\$CLASS_NAME/g, 'sprite-' + spriteName)
+                                      .replace(/\$IMAGE_NAME/g, spriteFile)
+                                      .replace(/\$IMAGE_WIDTH/g, spriteWidth)
+                                      .replace(/\$IMAGE_HEIGHT/g, spriteHeigth);
+
+    spriteSheetContent = spriteSheetContent + newSpriteClass;
+  }
+
+  spriteSheetContent = spriteSheetMessage + spriteSheetContent;
+
+  /* Export sprites.scss file */
+  fs.writeFileSync(spritesheetFile, spriteSheetContent);
+}
+
 app.use(sassMiddleware({
   /* Options */
   src: path.join(__dirname, '/app/assets/stylesheets'),
@@ -93,6 +134,7 @@ app.use(sassMiddleware({
 }));
 
 app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
+app.use("/sprites", express.static(__dirname + '/app/assets/images/sprites'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
 /* Request handler */
@@ -146,7 +188,7 @@ app.use(function(req, res, next) {
     // console.log('CURRENT HOST ORIGIN: ' + hostOrigin);
     // console.log('CURRENT MATCHING ENDPOINT:' + currentEndpoint);
     if( currentEndpoint.match(hostOriginRegExp) ) { // konsole.studio == konsole.studio
-      console.log('[Proxy] Will proxy domain: ' + currentEndpoint);
+      console.log('[Proxy] Incoming path: ' + currentEndpoint);
       proxyInstance = proxy(currentEndpoint, proxyOptions);
       proxyInstance(req, res, next);
     }
@@ -209,6 +251,7 @@ var httpServer = http.createServer(app);
 
 var httpPort = process.env.PORT || 80;
 httpServer.listen(httpPort, function() {
+  generateSpriteSheet();
   updateHostFile();
   console.log('Access your project on: ' + routesHost[0]);
 });
