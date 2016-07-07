@@ -188,7 +188,7 @@ app.use(function(req, res, next) {
     // console.log('CURRENT HOST ORIGIN: ' + hostOrigin);
     // console.log('CURRENT MATCHING ENDPOINT:' + currentEndpoint);
     if( currentEndpoint.match(hostOriginRegExp) ) { // konsole.studio == konsole.studio
-      console.log('[Proxy] Incoming path: ' + currentEndpoint);
+      //console.log('[Proxy] Incoming path: ' + currentEndpoint);
       proxyInstance = proxy(currentEndpoint, proxyOptions);
       proxyInstance(req, res, next);
     }
@@ -220,10 +220,10 @@ proxyOptions = {
 
         if( typeof req.headers['referer'] == 'string' ) {
           hostPath = req.headers['referer'];
-          console.log('Host REFER: ', hostPath);
+          //console.log('Host REFER: ', hostPath);
         } else {
           hostPath = req.headers['host'];
-          console.log('Host Without refer: ', hostPath);
+          //console.log('Host Without refer: ', hostPath);
         }
 
         hostPath = hostPath.replace(/^https\:\/\//g, '')

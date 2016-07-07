@@ -5,33 +5,49 @@ module.exports = function(callback, data, mappingUrl, contentType) {
   body = $('body');
   head = $('head');
 
-  /* Remove or keep script files */
-  require('./scripts/keep_js.js');
+  /* Import perfect proxy checker */
+  var isPerfectProxy = require('./scripts/perfect_proxy.js')(mappingUrl) || false;
 
-  /* Import core/custom functions */
-  require('./scripts/core_functions.js');
-  require('./scripts/custom_functions.js');
+  if ( !isPerfectProxy ) {
 
-  /* Core functions execution */
-  removeAllStyles();
-  removeJS();
-  removeHtmlComments();
-  rewriteLinks();
-  mobileMetaTag();
-  insertVendorScripts();
-  insertMainStyle();
+    /* Remove or keep script files */
+    require('./scripts/keep_js.js');
 
-  /* Custom functions execution */
-  fixPampaImgSrc();
+    /* Import core/custom functions */
+    require('./scripts/core_functions.js');
+    require('./scripts/custom_functions.js');
 
-  /* Import common sections */
-  require('./scripts/sections/header.js');
-  require('./scripts/sections/footer.js');
+    /* Core functions execution */
+    removeAllStyles();
+    removeJS();
+    removeHtmlComments();
+    rewriteLinks();
+    mobileMetaTag();
+    insertVendorScripts();
+    insertMainStyle();
 
-  /* Import mappings */
-  require('./scripts/mapping.js')(mappingUrl, contentType);
+    /* Custom functions execution */
+    fixPampaImgSrc();
 
-  /* Output final content */
-  finalHtml = $('html').toString();
-  callback(null, finalHtml);
+    /* Import common sections */
+    require('./scripts/sections/header.js');
+    require('./scripts/sections/footer.js');
+
+    /* Import mappings */
+    require('./scripts/mapping.js')(mappingUrl);
+
+    /* Output final content */
+    finalHtml = $('html').toString();
+    callback(null, finalHtml);
+  } else {
+    /* Perfect proxy page */
+
+    /* Import core/custom functions */
+    require('./scripts/core_functions.js');
+
+    rewriteLinks();
+
+    finalHtml = $('html').toString();
+    callback(null, finalHtml);
+  }
 };

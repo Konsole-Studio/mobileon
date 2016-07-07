@@ -16,5 +16,5 @@ module.exports = function(mappingUrl) {
   );
 
   /* Router will import a file according to mapping */
-  require('./router')(pageTypes, mappingUrl);
+  require('./router')(pageTypes, mappingUrl, 'mapping');
 };
