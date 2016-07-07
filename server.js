@@ -173,7 +173,6 @@ app.use(function(req, res, next) {
   /* Verify if Production */
   else if ( hostOrigin.match(/(m\.|mobile\.)/g) ) { //m.konsole.studio / mobile.konsole.studio
     environment = 'production';
-
     if ( hostOrigin.match(/m\./g) ) {
       hostVar = 'm.';
     } else {

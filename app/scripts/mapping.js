@@ -6,12 +6,17 @@ module.exports = function(mappingUrl) {
     {
       type: "home",
       url: /(index|^\/$|^\/\?)/g,
-      appFile: ["./pages/home.js"]
+      appFile: ["./pages/home/home.js"]
     },
     {
       type: "menu",
       url: /menu/g,
-      appFile: ["./pages/menu.js"]
+      appFile: ["./pages/browse/menu.js"]
+    },
+    {
+      type: "404",
+      url: /menu/g,
+      appFile: ["./pages/browse/menu.js"]
     }
   );
 
