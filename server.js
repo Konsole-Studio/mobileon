@@ -237,7 +237,7 @@ proxyOptions = {
 
         // Start App core module
         //callback(null, data);
-        require('./app/main.js')(callback, data, mappingUrl, contentType);
+        require('./app/main.js')(callback, data, mappingUrl, contentType, environment);
       } else {
         callback(null, data);
       }

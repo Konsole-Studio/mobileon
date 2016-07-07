@@ -1,4 +1,4 @@
-module.exports = function(callback, data, mappingUrl, contentType) {
+module.exports = function(callback, data, mappingUrl, contentType, environment) {
 
   /* Global DOM variables */
   html = $('html');
@@ -21,6 +21,7 @@ module.exports = function(callback, data, mappingUrl, contentType) {
     removeAllStyles();
     removeJS();
     removeHtmlComments();
+    setBodyEnvironment(environment);
     rewriteLinks();
     mobileMetaTag();
     insertVendorScripts();

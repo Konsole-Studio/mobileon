@@ -25,6 +25,10 @@ insertMainStyle = function() {
   head.append('<link rel="stylesheet" href="//' + hostPath + '/styles/style.css">');
 }
 
+setBodyEnvironment = function(environment) {
+  body.attr('data-environment', environment);
+}
+
 rewriteLinks = function() {
   html.find('a, head base[href]').attr('href', function(_, attr) {
       return attr ? rewriteLink(attr) : null;
@@ -104,6 +108,7 @@ module.exports = {
   insertVendorScripts: insertVendorScripts,
   insertMainStyle: insertMainStyle,
   removeHtmlComments: removeHtmlComments,
+  setBodyEnvironment: setBodyEnvironment,
   mobileMetaTag: mobileMetaTag,
   rewriteLinks: rewriteLinks
 };
