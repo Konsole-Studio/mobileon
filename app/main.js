@@ -31,8 +31,8 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
     fixPampaImgSrc();
 
     /* Import common sections */
-    require('./scripts/sections/header.js');
-    require('./scripts/sections/footer.js');
+    require('./scripts/sections/header.js')();
+    require('./scripts/sections/footer.js')();
 
     /* Import mappings */
     require('./scripts/mapping.js')(mappingUrl);
