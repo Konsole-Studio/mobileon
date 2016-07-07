@@ -1,0 +1,145 @@
+/* VARIABLES */
+
+// Color Scheme
+// ------------
+// Greens
+$green1:                  #00c109;
+
+// Blues
+$blue1:                   #0070e0;
+$blue2:                   #5278B4;
+$blue3:                   #F3F7FF;
+$blue4:                   #4C5A81;
+$blue5:                   #002BAB;
+$blue6:                   #257bb7;
+$blue7:                   #000575;
+$blue8:                   #3680c6;
+$steelblue:               #36495C;
+$bluewood:                #2D4356;
+
+$darkBlue:                #0088CC;
+$darkBlueTablet:          #0e73c0;
+$lightBlue:               #E4F3FD;
+$lightBlue2:              #3DABE2;
+$darkerBlue:              #1C457C;
+$darkerBlueTablet:        #0088cc;
+
+// White
+$white:                   #FFFFFF;
+
+// Black
+$black:                   #000000;
+$black_text:              #333333;
+$black1:                  #373735;
+$black_border:            #282828;
+
+// Greys
+$grey1:                   #EEEEEE;
+$grey2:                   #C9C1BF;
+$grey3:                   #666666;
+$grey4:                   #D6D6D6;
+$grey5:                   #CBCBCB;
+$grey6:                   #919191;
+$grey7:                   #F4F4F4;
+$grey8:                   #DDDDDD;
+$grey9:                   #EBEBE6;
+$grey10:                  #414042;
+$ghost:                   #C7C8D0;
+
+$darkGrey:                #323232;
+$lightGrey:               #595959;
+$lighterGrey:             #464646;
+$whiteGrey:               #CCCCCC;
+$btnGrey:									#3d3e40;
+$borderGrey:							#979797;
+
+// Oranges
+$orange1:                 #E55213;
+$orange2:									#ee8522;
+
+// Peaches
+$peach1:                  #FCECDC;
+$peach2:                  #FDF5EA;
+
+// Pink
+$pink1:                   #FF3B67;
+
+// Brown
+$brown1:                  #CFCCB8;
+$brown2:                  #B5B1A0;
+
+// Red
+$red1:                    #D03030;
+$red2:                    #F00;
+
+//Yellow
+$btnYellow:								#fdcc10;
+
+// Color Names
+$text_black:              $black_text;
+$text_pink:               $pink1;
+$base_blue:               $blue8;
+$preview_blue:            $blue1;
+$pdp_step_blue:           $blue2;
+$base_color:              $black1;
+$body_background_color:   $white;
+$nav_background_color:    $grey2;
+$link_color:              $blue1;
+$peach_bg:                $peach1;
+$pdp_peach:               $peach2;
+$sale_color:              $red1;
+$breadcrumb_blue:         $blue5;
+$cart_total_bg:           $brown1;
+$cart_product_title:      $blue7;
+
+$background_color:        $grey4;
+$error:                   $red2;
+$select_arrow:            $black;
+
+// Typography
+// ----------
+$font_family:             "Helvetica Neue", Helvetica, Verdana;
+$base_font_size:          14px;
+$line_height:             24px;
+
+
+// Header Sizes
+// ------------
+$h1_size:                 $base_font_size + 9px;
+$h2_size:                 $base_font_size + 6px;
+$h3_size:                 $base_font_size + 3px;
+
+// Borders
+// -------
+$border_color:            $black;
+$border:                  1px solid $border_color;
+$border_register:					1px solid $borderGrey;
+
+// Component Sizing
+// ----------------
+$padding:                 10px;
+$margin:                  10px;
+$border_radius:           5px;
+$btn_width:               100px;
+$spacing:                 10px;
+
+// Text Shadows
+// ------------
+$text_shadow_white:       0 1px $white;
+
+
+// Sizes
+///////////////////////////////////////////////////////////////////////////////
+$base-font-size: 14px;
+$base-line-height: $base-font-size * 1.5;
+$base-border-radius: 5px;
+
+$xxlarge-size: $base-font-size + 14; // 28px
+$xlarge-size: $base-font-size + 12; // 26px
+$larger-size: $base-font-size + 8; // 22px
+$large-size: $base-font-size + 4; // 18px
+$medium-size: $base-font-size + 2; // 16px
+$normal-size: $base-font-size; //14px
+$smaller-size: $base-font-size - 1; //13px
+$x-smaller-size: $base-font-size - 2; //12px
+$xx-smaller-size: $base-font-size - 3; //11px

@@ -1,8 +1,11 @@
 /* Import sprite sheet */
 @import 'sprites/sprites';
 
-/* Import base */
-@import 'base';
+/* Import globals */
+@import 'globals/variables';
+@import 'globals/normalize';
+@import 'globals/reset';
+@import 'globals/base';
 
 /* Page style imports */
 @import 'pages/home';

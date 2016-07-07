@@ -1,0 +1,61 @@
+/* Base will run into every page */
+html {
+  height: 100%;
+  overflow: auto !important;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+  background: $body_background_color;
+  color: $text_black;
+  font-family: $font_family;
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+a {
+  color: $link_color;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+// Don't show the highlight of a link when tapped
+a, a:link {
+  -webkit-tap-highlight-color: rgba(229, 82, 19, 0.5);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Super and Sub
+sup, sub{
+  height: 0;
+  line-height: 1;
+  vertical-align: baseline;
+  _vertical-align: bottom;
+  position: relative;
+  font-size: 12px;
+}
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: .5ex;
+}
+
+// Don't show type number rotator, its just silly
+input[type="number"]::-webkit-outer-spin-button {
+  display: none;
+}
+
+.ft-hide {
+  display: none;
+}
+
+.ft-hide-force {
+  display: none !important;
+}
