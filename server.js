@@ -164,6 +164,15 @@ app.use(function(req, res, next) {
                            .replace(/appft\-/gi, '')
                            .replace(/\-/gi, '.'); //konsole.studio
   }
+  /* Verify if Digital Ocean */
+  else if( hostOrigin.match(/first\-touch/g) ) { //appft-pampaburger-com-br.first-touch.site
+    environment = 'digital-ocean';
+    hostVar = 'appft-';
+    hostOrigin = hostOrigin.replace(/\.first\-touch\.site/gi, '') //appft-pampaburger-com-br
+                           .replace(/appft\-stage\-/gi, '') //appft-pampaburger-com-br
+                           .replace(/appft\-/gi, '') //pampaburger-com-br
+                           .replace(/\-/gi, '.'); //pampaburger.com.br
+  }
   /* Verify if Stage */
   else if ( hostOrigin.match(/mstage\./g) ) { //mstage.konsole.studio
     environment = 'stage';
