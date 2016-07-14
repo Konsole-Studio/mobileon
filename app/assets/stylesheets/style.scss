@@ -7,6 +7,10 @@
 @import 'globals/reset';
 @import 'globals/base';
 
+/* Import sections */
+@import 'sections/header';
+@import 'sections/footer';
+
 /* Page style imports */
 @import 'pages/home';
 @import 'pages/menu';
