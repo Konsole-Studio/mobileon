@@ -146,8 +146,12 @@ app.use(function(req, res, next) {
     res.sendStatus(200);
   }
 
+  //console.log(req.statusCode);
+
   /* Proxy Router */
   hostOrigin = req.headers['host'];
+
+  console.log("HOST ORIGIN:", hostOrigin);
 
   /* Verify if Development */
   if ( hostOrigin.match(/mlocal/g) ) { //mlocal.konsole.studio
@@ -244,7 +248,7 @@ proxyOptions = {
         console.log(data);
 
         /* Verify if contains <html> */
-        if( data.match(/\<html\>/gi) ) {
+        if( data.match(/\<html/gi) ) {
           // Start App core module
           require('./app/main.js')(callback, data, mappingUrl, contentType, environment);
         } else {
