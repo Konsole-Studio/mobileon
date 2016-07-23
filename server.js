@@ -135,6 +135,7 @@ app.use(sassMiddleware({
 
 app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
 app.use("/sprites", express.static(__dirname + '/app/assets/images/sprites'));
+app.use("/fonts", express.static(__dirname + '/app/assets/fonts'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
 /* Request handler */
@@ -241,6 +242,11 @@ proxyOptions = {
 
         /* Load Html into Cheerio to be our manageable DOM */
         $ = cheerio.load(data, {decodeEntities: false});
+
+        /* Verify Redirect from Casa da Construção and manually rewrite it */
+        if( data.match(/window\.location\.assign\(\"guaiba\/index\.php\"\)/gi) ) {
+          data = data.replace(/\index\.php/gi, 'index.php?id_loja=4');
+        }
 
         /* Verify if contains <html> */
         if( data.match(/\<html/gi) ) {

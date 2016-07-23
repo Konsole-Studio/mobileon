@@ -1,3 +1,31 @@
 .ft-header-container {
-  background: $black;
+  background: $red4;
+
+  #top-content-logo {
+    padding: $padding;
+  }
+
+  #top-content-grupo {
+    padding: 0 $padding $padding $padding;
+  }
+
+  .ft-search-container {
+    padding: $padding;
+    position: relative;
+    .ft-search-input {
+      width: 100%;
+      -webkit-appearance: none;
+      border: 0;
+      padding: $padding - 2;
+      font-size: $base_font_size;
+    }
+
+    .ft-search-button {
+      color: $grey11;
+      position: absolute;
+      top: $spacing + 6;
+      right: $spacing + 6;
+    }
+
+  }
 }

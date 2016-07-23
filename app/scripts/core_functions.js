@@ -99,12 +99,7 @@ rewriterCore = function (originalUrl) {
 }
 
 mobileMetaTag = function() {
-  var originalMetaTag = head.find('meta[name="viewport"]');
-  if( originalMetaTag ) {
-    originalMetaTag.attr('content', 'width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no');
-  } else {
-    head.append('<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">');
-  }
+  head.append('<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">');
 }
 
 removeHtmlComments = function() {
