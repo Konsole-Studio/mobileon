@@ -14,6 +14,10 @@
   /* non-critical appearance styles */
   list-style: none;
   background: #5a1313;
+  display: none;
+  &.active {
+    display: block;
+  }
 }
 
 /* Navigation Menu - List items */

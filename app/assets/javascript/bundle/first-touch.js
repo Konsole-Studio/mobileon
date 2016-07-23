@@ -17,12 +17,18 @@ jQuery(document).ready(function() {
   function handleMenu() {
     var siteContainer = jQuery('.ft-site-wrap');
     var siteMask = jQuery('.ft-site-mask');
+    var menuContainer = jQuery('.ft-menu-container ');
     if( !siteContainer.hasClass('ft-nav-opened') ) {
       siteContainer.addClass('ft-nav-opened');
       siteMask.addClass('active');
+      menuContainer.addClass('active');
     } else {
       siteContainer.removeClass('ft-nav-opened');
       siteMask.removeClass('active');
+      setTimeout(function() {
+        menuContainer.removeClass('active');
+      }, 200);
+
     }
   }
 });
