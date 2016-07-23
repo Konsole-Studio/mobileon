@@ -29,6 +29,20 @@ setBodyEnvironment = function(environment) {
   body.attr('data-environment', environment);
 }
 
+absolutizeSrcs = function() {
+  html.find('img, script').attr('src', function(i, attr) {
+      return attr ? exports.absolutize(attr) : null;
+  });
+}
+
+absolutize = function(href) {
+  href = href.trim();
+  if (/^(?![a-zA-Z]+:)(?!\/\/)(?!$)/.test(href)) {
+      return '//' + env.source_host + (href[0] === '/' ? '' : exports.slashPath()) + href;
+  }
+  return href;
+}
+
 rewriteLinks = function() {
   html.find('a, head base[href]').attr('href', function(_, attr) {
       return attr ? rewriteLink(attr) : null;
