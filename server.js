@@ -146,12 +146,8 @@ app.use(function(req, res, next) {
     res.sendStatus(200);
   }
 
-  //console.log(req.statusCode);
-
   /* Proxy Router */
   hostOrigin = req.headers['host'];
-
-  console.log("HOST ORIGIN:", hostOrigin);
 
   /* Verify if Development */
   if ( hostOrigin.match(/mlocal/g) ) { //mlocal.konsole.studio
@@ -208,6 +204,7 @@ proxyOptions = {
 
   preIntercept: function(res) {
     // If we must preIntercept something
+    //console.log(res.fetchedUrls);
   },
 
   decorateRequest: function(req) {
@@ -244,8 +241,6 @@ proxyOptions = {
 
         /* Load Html into Cheerio to be our manageable DOM */
         $ = cheerio.load(data, {decodeEntities: false});
-
-        console.log(data);
 
         /* Verify if contains <html> */
         if( data.match(/\<html/gi) ) {
