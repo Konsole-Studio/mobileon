@@ -241,9 +241,15 @@ proxyOptions = {
         /* Load Html into Cheerio to be our manageable DOM */
         $ = cheerio.load(data, {decodeEntities: false});
 
-        // Start App core module
-        //callback(null, data);
-        require('./app/main.js')(callback, data, mappingUrl, contentType, environment);
+        console.log(data);
+
+        /* Verify if contains <html> */
+        if( data.match(/\<html\>/gi) ) {
+          // Start App core module
+          require('./app/main.js')(callback, data, mappingUrl, contentType, environment);
+        } else {
+          callback(null, data);
+        }
       } else {
         callback(null, data);
       }
