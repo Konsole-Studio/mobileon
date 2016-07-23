@@ -25,6 +25,7 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
     rewriteLinks();
     mobileMetaTag();
     insertVendorScripts();
+    insertMainJS();
     insertMainStyle();
 
     /* Custom functions execution */

@@ -2,11 +2,21 @@
   background: $red4;
 
   #top-content-logo {
-    padding: $padding;
+    padding: $padding $padding 0 $padding;
+    width: 70%;
+    margin: auto;
+    display: block;
   }
 
   #top-content-grupo {
     padding: 0 $padding $padding $padding;
+    text-align: center;
+  }
+
+  .ft-menu-button {
+    position: absolute;
+    padding: $padding;
+    color: $white;
   }
 
   .ft-search-container {

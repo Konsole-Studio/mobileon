@@ -8,7 +8,10 @@ var header = function() {
 
   initHeader = function() {
     var headerContainer = body.find('#top').first();
+    var headerLogo = headerContainer.find('#top-content-logo');
+
     headerContainer.addClass('ft-header-container');
+    headerLogo.before('<div class="ft-menu-button fa fa-bars fa-2x"/>');
   };
 
   initSearch = function() {
@@ -62,6 +65,8 @@ var header = function() {
       var currentElement = $(this);
       siteContainer.append(currentElement);
     });
+
+    siteContainer.prepend('<div class="ft-site-mask"/>')
 
     body.prepend(menuContainer);
   };

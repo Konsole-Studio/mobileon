@@ -89,6 +89,63 @@ function cleanupHosts() {
     fs.writeFileSync('/etc/hosts', originalHosts);
 };
 
+ /**
+  * Thanks to @williammustaffa for this compiler.
+  * Original src: https://github.com/williammustaffa/jGame.js/blob/master/compile.js
+  *
+  */
+function compileJS() {
+  // Project src
+  var srcDir = "./app/assets/javascript/"
+  var entryPoint = srcDir + "main.js";
+  // regex to serach @include("file"); declarations
+  var searchRegex = /include\(\"[^\)]*\"\)/;
+  // Parse entry point
+  var content = parseInclude(entryPoint);
+  // write the parsed/replaced content into a single file
+  fs.writeFileSync("./app/assets/javascript/bundle/first-touch.js", content);
+
+  /**
+   *  Replaces all @include("file") declarations with file content
+   *
+   * @param {String} file src
+   * @returns {String} File content with "includes" content
+   */
+  function parseInclude(src) {
+    var content = fs.readFileSync(src, "utf8");
+    // verify all include declarations and replace with file content
+    while((searchResult = searchRegex.exec(content))) {
+      content = content.replace(';', '');
+      var includeDeclaration = searchResult[0];
+      // get included file path
+      var includePath = getPath(includeDeclaration);
+      // parse include declaration content
+      var includeContent = parseInclude(includePath);
+      // replace include with file content
+      content = content.replace(includeDeclaration, includeContent);
+    }
+    return content;
+  }
+
+  /**
+   * Retrive the include declaration file path
+   *
+   * @param {String} include declaration like @include("test.js")
+   * @returns {String} path
+   */
+  function getPath(include) {
+    return srcDir + include.replace(/include\(\"|\"\)/g, "");
+  }
+
+  function insertFileInfo(src, content) {
+    var prefix = "/* >> " + src + " START */",
+        sufix = "/* << " + src + " END */";
+    //
+    return  prefix + "\n" + content + "\n" + sufix;
+  }
+  console.log("JS assets compiled into -> app/assets/javascript/first-touch.js");
+}
+
 function generateSpriteSheet() {
   var spritesLocation = path.join(__dirname, './app/assets/images/sprites/');
   var spritesheetFile = path.join(__dirname, './app/assets/stylesheets/sprites/sprites.scss');
@@ -136,6 +193,7 @@ app.use(sassMiddleware({
 app.use("/vendor", express.static(__dirname + '/app/assets/javascript/vendor'));
 app.use("/sprites", express.static(__dirname + '/app/assets/images/sprites'));
 app.use("/fonts", express.static(__dirname + '/app/assets/fonts'));
+app.use("/scripts", express.static(__dirname + '/app/assets/javascript/bundle'));
 app.use(express.static(path.join(__dirname, '/app/assets/stylesheets/css')));
 
 /* Request handler */
@@ -269,6 +327,7 @@ var httpPort = process.env.PORT || 80;
 httpServer.listen(httpPort, function() {
   generateSpriteSheet();
   updateHostFile();
+  compileJS();
   console.log('Access your project on: ' + routesHost[0]);
 });
 //httpsServer.listen(8443);

@@ -21,6 +21,10 @@ insertVendorScripts = function() {
   head.append('<script src="//' + hostPath + '/vendor/jquery.DOMNodeAppear.js"></script>');
 }
 
+insertMainJS = function() {
+  head.append('<script src="//' + hostPath + '/scripts/first-touch.js"></script>');
+}
+
 insertMainStyle = function() {
   head.append('<link rel="stylesheet" href="//' + hostPath + '/styles/style.css">');
 }
@@ -116,6 +120,7 @@ module.exports = {
   removeJS: removeJS,
   insertVendorScripts: insertVendorScripts,
   insertMainStyle: insertMainStyle,
+  insertMainJS: insertMainJS,
   removeHtmlComments: removeHtmlComments,
   setBodyEnvironment: setBodyEnvironment,
   mobileMetaTag: mobileMetaTag,
