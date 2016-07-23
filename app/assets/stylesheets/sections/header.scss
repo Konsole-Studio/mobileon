@@ -34,8 +34,12 @@
     .ft-search-button {
       color: $grey11;
       position: absolute;
-      top: $spacing + 6;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      display: block;
       right: $spacing + 6;
+      height: $spacing + 6;
     }
 
   }
