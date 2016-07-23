@@ -2,6 +2,7 @@ jQuery(document).ready(function() {
   /* Variable declarations */
   var menuButton = jQuery('.ft-menu-button');
   var siteMask = jQuery('.ft-site-mask');
+  var carouselContainer = jQuery('.ft-header-carousel-scroll');
 
   /* Event declarations */
   menuButton.on('click', function() {
@@ -10,6 +11,10 @@ jQuery(document).ready(function() {
 
   siteMask.on('click', function() {
     handleMenu();
+  });
+
+  carouselContainer.DOMNodeAppear(function() {
+    carouselContainer.css('transform', 'translate3d(0px, 0px, 0px)');
   });
 
   /* Function declarations */

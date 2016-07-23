@@ -4,10 +4,11 @@ var header = function() {
     initHeader();
     initSearch();
     initMenu();
+    initCarousel();
   };
 
   initHeader = function() {
-    var headerContainer = body.find('#top').first();
+    headerContainer = body.find('#top').first();
     var headerLogo = headerContainer.find('#top-content-logo');
 
     headerContainer.addClass('ft-header-container');
@@ -69,6 +70,37 @@ var header = function() {
     siteContainer.prepend('<div class="ft-site-mask"/>')
 
     body.prepend(menuContainer);
+  };
+
+  initCarousel = function() {
+    var carouselContainer = body.find('.ws_images');
+    var carouselScroll = carouselContainer.find('ul');
+    var carouselItem = carouselScroll.find('li');
+    var carouselImage = carouselItem.find('img');
+
+    carouselImage.map(function(i, el) {
+      var currentImage = $(this);
+      var currentSrc = currentImage.attr('src');
+      var currentParent = currentImage.parents('li');
+      console.log(currentParent);
+      currentParent.css('background', 'url('+ currentSrc +')');
+      currentImage.remove();
+    });
+
+    carouselItem.find('a').remove();
+
+    carouselContainer.addClass('ft-header-carousel-container');
+    carouselContainer.attr('data-ur-set', 'carousel');
+    carouselContainer.attr('data-ur-fill', '1');
+    carouselContainer.attr('data-ur-infinite', 'disabled');
+
+    carouselScroll.addClass('ft-header-carousel-scroll');
+    carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
+
+    carouselItem.addClass('ft-header-carousel-item');
+    carouselItem.attr('data-ur-carousel-component', 'item');
+
+
   };
 
   return {
