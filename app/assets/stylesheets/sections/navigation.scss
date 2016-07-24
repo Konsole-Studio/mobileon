@@ -23,7 +23,7 @@
 /* Navigation Menu - List items */
 .ft-menu-item {
   /* non-critical appearance styles */
-  width: 195px;
+  width: 85%;
   border-bottom: 1px solid #fff;
 }
 
@@ -52,7 +52,7 @@
   transition: left 0.2s;
   &.ft-nav-opened {
     position: fixed;
-    left: 200px;
+    left: 85%;
     -webkit-filter: blur(3px);
   }
 }
