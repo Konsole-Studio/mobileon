@@ -30,6 +30,7 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
 
     /* Custom functions execution */
     fixPampaImgSrc();
+    includeFacebookAPI();
 
     /* Import common sections */
     require('./scripts/sections/header.js')();

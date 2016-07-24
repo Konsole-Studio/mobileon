@@ -93,14 +93,13 @@ var header = function() {
     carouselContainer.attr('data-ur-set', 'carousel');
     carouselContainer.attr('data-ur-fill', '1');
     carouselContainer.attr('data-ur-infinite', 'disabled');
+    carouselContainer.attr('data-ur-autoscroll', 'enabled');
 
     carouselScroll.addClass('ft-header-carousel-scroll');
     carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
 
     carouselItem.addClass('ft-header-carousel-item');
     carouselItem.attr('data-ur-carousel-component', 'item');
-
-
   };
 
   return {

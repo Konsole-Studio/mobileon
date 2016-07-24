@@ -1,4 +1,50 @@
 /* home.scss */
 .ft-home {
-  
+  .ft-home-container {
+    .ft-facebookLike-container {
+      width: 100%;
+      padding: $padding;
+    }
+    .ft-home-header {
+      background: $red4;
+      padding: $padding;
+      color: $white;
+      text-transform: uppercase;
+    }
+    .ft-promo-container {
+      padding-top: $padding;
+      .ft-product-container {
+        padding: $padding;
+        display: block;
+      }
+      .ft-product-image {
+        display: inline-block;
+        height: 90px;
+        width: 30%;
+        background-repeat: no-repeat;
+      }
+      .ft-product-details-wrapper {
+        width: 70%;
+        display: inline-block;
+      }
+      .cp-prod-desc {
+        padding-bottom: $padding;
+        text-transform: uppercase;
+        color: $darkRed2;
+        font-weight: bold;
+      }
+      .cp-prod-preco-de {
+        padding-bottom: $padding / 2;
+        color: $red5;
+        text-decoration: line-through;
+      }
+      .cp-prod-preco {
+        color: $green2;
+        font-weight: bold;
+      }
+      .cp-prod-vm {
+        padding-top: $padding;
+      }
+    }
+  }
 }
