@@ -23,7 +23,7 @@
 /* Navigation Menu - List items */
 .mc-menu-item {
   /* non-critical appearance styles */
-  width: 69%;
+  width: 69.6%;
   border-bottom: 1px solid #fff;
 }
 
@@ -51,9 +51,10 @@
   z-index: 5;
   transition: left 0.2s;
   &.mc-nav-opened {
-    position: fixed;
     left: 70%;
     -webkit-filter: blur(3px);
+    height: 100%;
+    overflow: hidden;
   }
 }
 

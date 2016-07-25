@@ -77,6 +77,9 @@ var header = function() {
     var carouselScroll = carouselContainer.find('ul');
     var carouselItem = carouselScroll.find('li');
     var carouselImage = carouselItem.find('img');
+    var wowSliderText = body.find('.ws_script');
+
+    wowSliderText.remove();
 
     carouselImage.map(function(i, el) {
       var currentImage = $(this);
