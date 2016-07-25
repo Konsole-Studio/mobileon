@@ -5,6 +5,7 @@ var home = function() {
     initFacebookLike();
     initPromocoes();
     initMaisAcessados();
+    initDestaqueCarousel();
   };
 
   initHome = function() {
@@ -81,6 +82,36 @@ var home = function() {
         currentWrapper.append(currentDetail);
       });
     });
+  };
+
+  initDestaqueCarousel = function() {
+    var carouselContainer = body.find('#capa-destaque');
+    var carouselScroll = carouselContainer.find('ul');
+    var carouselItem = carouselScroll.find('li');
+    var carouselImage = carouselItem.find('img');
+
+    carouselImage.map(function(i, el) {
+      var currentImage = $(this);
+      var currentSrc = currentImage.attr('src');
+      var currentParent = currentImage.parents('li');
+      console.log(currentParent);
+      currentParent.css('background', 'url('+ currentSrc +')');
+      currentImage.remove();
+    });
+
+    carouselItem.find('a').remove();
+
+    carouselContainer.addClass('mc-destaque-carousel-container');
+    carouselContainer.attr('data-ur-set', 'carousel');
+    carouselContainer.attr('data-ur-fill', '1');
+    carouselContainer.attr('data-ur-infinite', 'enabled');
+    carouselContainer.attr('data-ur-autoscroll', 'enabled');
+
+    carouselScroll.addClass('mc-destaque-carousel-scroll');
+    carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
+
+    carouselItem.addClass('mc-destaque-carousel-item');
+    carouselItem.attr('data-ur-carousel-component', 'item');
   };
 
   return {

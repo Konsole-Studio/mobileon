@@ -92,7 +92,7 @@ var header = function() {
     carouselContainer.addClass('mc-header-carousel-container');
     carouselContainer.attr('data-ur-set', 'carousel');
     carouselContainer.attr('data-ur-fill', '1');
-    carouselContainer.attr('data-ur-infinite', 'disabled');
+    carouselContainer.attr('data-ur-infinite', 'enabled');
     carouselContainer.attr('data-ur-autoscroll', 'enabled');
 
     carouselScroll.addClass('mc-header-carousel-scroll');
