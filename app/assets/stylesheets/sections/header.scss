@@ -1,4 +1,4 @@
-.ft-header-container {
+.mc-header-container {
   background: $red4;
 
   #top-content-logo {
@@ -13,16 +13,16 @@
     text-align: center;
   }
 
-  .ft-menu-button {
+  .mc-menu-button {
     position: absolute;
     padding: $padding;
     color: $white;
   }
 
-  .ft-search-container {
+  .mc-search-container {
     padding: $padding;
     position: relative;
-    .ft-search-input {
+    .mc-search-input {
       width: 100%;
       -webkit-appearance: none;
       border: 0;
@@ -31,7 +31,7 @@
       border-radius: 0;
     }
 
-    .ft-search-button {
+    .mc-search-button {
       color: $grey11;
       position: absolute;
       top: 0;

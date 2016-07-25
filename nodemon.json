@@ -1,4 +1,4 @@
 {
   "verbose": true,
-  "ignore": ["/app/assets/javascript/bundle/first-touch.js"]
+  "ignore": ["/app/assets/javascript/bundle/mobile-cloud.js"]
 }

@@ -29,7 +29,6 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
     insertMainStyle();
 
     /* Custom functions execution */
-    fixPampaImgSrc();
     includeFacebookAPI();
 
     /* Import common sections */
@@ -45,7 +44,7 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
   } else {
     /* Perfect proxy page */
 
-    /* Import core/custom functions */
+    /* Import core functions */
     require('./scripts/core_functions.js');
 
     rewriteLinks();

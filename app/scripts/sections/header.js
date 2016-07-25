@@ -11,8 +11,8 @@ var header = function() {
     headerContainer = body.find('#top').first();
     var headerLogo = headerContainer.find('#top-content-logo');
 
-    headerContainer.addClass('ft-header-container');
-    headerLogo.before('<div class="ft-menu-button fa fa-bars fa-2x"/>');
+    headerContainer.addClass('mc-header-container');
+    headerLogo.before('<div class="mc-menu-button fa fa-bars fa-2x"/>');
   };
 
   initSearch = function() {
@@ -20,12 +20,12 @@ var header = function() {
     var searchInput = searchContainer.find('#fm-q');
     var searchButton = searchContainer.find('#btn-buscar');
 
-    searchContainer.addClass('ft-search-container');
+    searchContainer.addClass('mc-search-container');
 
-    searchInput.addClass('ft-search-input');
+    searchInput.addClass('mc-search-input');
     searchInput.attr('placeholder', 'Procurando algo?');
 
-    searchButton.addClass('ft-search-button fa fa-search');
+    searchButton.addClass('mc-search-button fa fa-search');
     searchButton.removeAttr('href');
   };
 
@@ -34,15 +34,15 @@ var header = function() {
     var menuMapLinksContainer = menuContent.find('#Map');
     var menuMapLinks = menuContent.find('area');
 
-    menuMapLinksContainer.prepend('<ul class="ft-menu-container"/>');
-    var menuContainer = menuMapLinksContainer.find('.ft-menu-container');
+    menuMapLinksContainer.prepend('<ul class="mc-menu-container"/>');
+    var menuContainer = menuMapLinksContainer.find('.mc-menu-container');
 
     /* Turn area into <a> elements */
     menuMapLinks.map(function(i, el) {
       var currentMap = $(this);
       var altText = currentMap.attr('alt');
       var href = currentMap.attr('href');
-      var linkContainer = $('<li class="ft-menu-item"/>');
+      var linkContainer = $('<li class="mc-menu-item"/>');
 
       currentMap.before(linkContainer);
 
@@ -56,10 +56,10 @@ var header = function() {
     });
 
     menuContent.prepend(menuContainer);
-    menuContent.children('img').addClass('ft-hide');
+    menuContent.children('img').addClass('mc-hide');
 
-    body.prepend('<div class="ft-site-wrap"/>');
-    var siteContainer = body.find('.ft-site-wrap');
+    body.prepend('<div class="mc-site-wrap"/>');
+    var siteContainer = body.find('.mc-site-wrap');
     var siteElements = siteContainer.nextAll();
 
     siteElements.map(function(i, el) {
@@ -67,7 +67,7 @@ var header = function() {
       siteContainer.append(currentElement);
     });
 
-    siteContainer.prepend('<div class="ft-site-mask"/>')
+    siteContainer.prepend('<div class="mc-site-mask"/>')
 
     body.prepend(menuContainer);
   };
@@ -89,16 +89,16 @@ var header = function() {
 
     carouselItem.find('a').remove();
 
-    carouselContainer.addClass('ft-header-carousel-container');
+    carouselContainer.addClass('mc-header-carousel-container');
     carouselContainer.attr('data-ur-set', 'carousel');
     carouselContainer.attr('data-ur-fill', '1');
     carouselContainer.attr('data-ur-infinite', 'disabled');
     carouselContainer.attr('data-ur-autoscroll', 'enabled');
 
-    carouselScroll.addClass('ft-header-carousel-scroll');
+    carouselScroll.addClass('mc-header-carousel-scroll');
     carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
 
-    carouselItem.addClass('ft-header-carousel-item');
+    carouselItem.addClass('mc-header-carousel-item');
     carouselItem.attr('data-ur-carousel-component', 'item');
   };
 

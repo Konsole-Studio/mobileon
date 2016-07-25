@@ -7,9 +7,9 @@ var home = function() {
   };
 
   initHome = function() {
-    body.addClass('ft-home');
+    body.addClass('mc-home');
     homeContainer = body.find('#meio');
-    homeContainer.addClass("ft-home-container")
+    homeContainer.addClass("mc-home-container")
   };
 
   initFacebookLike = function() {
@@ -19,7 +19,7 @@ var home = function() {
 
     facebookLink.remove();
 
-    facebookContainer.addClass('ft-facebookLike-container')
+    facebookContainer.addClass('mc-facebookLike-container')
     facebookContainer.append(facebookLikeAPI);
   };
 
@@ -27,19 +27,19 @@ var home = function() {
     var promoContainer = homeContainer.find('#capa-promocoes');
     var productContainer = promoContainer.find('a');
     var productImage = promoContainer.find('.cp-prod-foto');
-    var promoHeader = '<div class="ft-home-header">Promoções</div>';
-    var detailsWrapper = '<div class="ft-product-details-wrapper"/>';
+    var promoHeader = '<div class="mc-home-header">Promoções</div>';
+    var detailsWrapper = '<div class="mc-product-details-wrapper"/>';
 
     promoContainer.find('.mbc').remove();
-    promoContainer.addClass('ft-promo-container');
+    promoContainer.addClass('mc-promo-container');
     promoContainer.prepend(promoHeader);
 
-    productContainer.addClass('ft-product-container');
+    productContainer.addClass('mc-product-container');
 
-    productImage.addClass('ft-product-image');
+    productImage.addClass('mc-product-image');
     productImage.after(detailsWrapper);
 
-    detailsWrapper = promoContainer.find('.ft-product-details-wrapper');
+    detailsWrapper = promoContainer.find('.mc-product-details-wrapper');
 
     /* Move details into each wrapper */
     detailsWrapper.map(function(i, el) {

@@ -1,29 +1,29 @@
 /* home.scss */
-.ft-home {
-  .ft-home-container {
-    .ft-facebookLike-container {
+.mc-home {
+  .mc-home-container {
+    .mc-facebookLike-container {
       width: 100%;
       padding: $padding;
     }
-    .ft-home-header {
+    .mc-home-header {
       background: $red4;
       padding: $padding;
       color: $white;
       text-transform: uppercase;
     }
-    .ft-promo-container {
+    .mc-promo-container {
       padding-top: $padding;
-      .ft-product-container {
+      .mc-product-container {
         padding: $padding;
         display: block;
       }
-      .ft-product-image {
+      .mc-product-image {
         display: inline-block;
         height: 90px;
         width: 30%;
         background-repeat: no-repeat;
       }
-      .ft-product-details-wrapper {
+      .mc-product-details-wrapper {
         width: 70%;
         display: inline-block;
       }

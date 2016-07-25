@@ -1,8 +1,8 @@
 jQuery(document).ready(function() {
   /* Variable declarations */
-  var menuButton = jQuery('.ft-menu-button');
-  var siteMask = jQuery('.ft-site-mask');
-  var carouselContainer = jQuery('.ft-header-carousel-scroll');
+  var menuButton = jQuery('.mc-menu-button');
+  var siteMask = jQuery('.mc-site-mask');
+  var carouselContainer = jQuery('.mc-header-carousel-scroll');
 
   /* Event declarations */
   menuButton.on('click', function() {
@@ -19,15 +19,15 @@ jQuery(document).ready(function() {
 
   /* Function declarations */
   function handleMenu() {
-    var siteContainer = jQuery('.ft-site-wrap');
-    var siteMask = jQuery('.ft-site-mask');
-    var menuContainer = jQuery('.ft-menu-container ');
-    if( !siteContainer.hasClass('ft-nav-opened') ) {
-      siteContainer.addClass('ft-nav-opened');
+    var siteContainer = jQuery('.mc-site-wrap');
+    var siteMask = jQuery('.mc-site-mask');
+    var menuContainer = jQuery('.mc-menu-container ');
+    if( !siteContainer.hasClass('mc-nav-opened') ) {
+      siteContainer.addClass('mc-nav-opened');
       siteMask.addClass('active');
       menuContainer.addClass('active');
     } else {
-      siteContainer.removeClass('ft-nav-opened');
+      siteContainer.removeClass('mc-nav-opened');
       siteMask.removeClass('active');
       setTimeout(function() {
         menuContainer.removeClass('active');

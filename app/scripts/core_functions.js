@@ -23,7 +23,7 @@ insertVendorScripts = function() {
 }
 
 insertMainJS = function() {
-  head.append('<script src="//' + hostPath + '/scripts/first-touch.js"></script>');
+  head.append('<script src="//' + hostPath + '/scripts/mobile-cloud.js"></script>');
 }
 
 insertMainStyle = function() {

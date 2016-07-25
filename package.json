@@ -1,7 +1,7 @@
 {
-  "name": "touch-first",
+  "name": "Mobile on Cloud - Casa da Construção",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mobile on Cloud project for Casa da Construção",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"

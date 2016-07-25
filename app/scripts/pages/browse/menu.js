@@ -5,7 +5,7 @@ var menu = function() {
   };
 
   initMenu = function() {
-    body.addClass('ft-menu');
+    body.addClass('mc-menu');
   };
 
   return {

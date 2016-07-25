@@ -103,7 +103,7 @@ function compileJS() {
   // Parse entry point
   var content = parseInclude(entryPoint);
   // write the parsed/replaced content into a single file
-  fs.writeFileSync("./app/assets/javascript/bundle/first-touch.js", content);
+  fs.writeFileSync("./app/assets/javascript/bundle/mobile-cloud.js", content);
 
   /**
    *  Replaces all @include("file") declarations with file content
@@ -143,7 +143,7 @@ function compileJS() {
     //
     return  prefix + "\n" + content + "\n" + sufix;
   }
-  console.log("JS assets compiled into -> app/assets/javascript/first-touch.js");
+  console.log("JS assets compiled into -> app/assets/javascript/mobile-cloud.js");
 }
 
 function generateSpriteSheet() {

@@ -1,14 +1,5 @@
 /* All functions here will be available on index.js */
 
-/* Fix src for images on pampa burger */
-fixPampaImgSrc = function() {
-  html.find('img.temp_no_img_src').each(function(i, elem) {
-    var fixedSrc = $(this).attr('data-orig-src');
-    $(this).removeClass('temp_no_img_src');
-    $(this).attr('src', fixedSrc);
-  });
-}
-
 includeFacebookAPI = function() {
   var facebookAPI = '<div id="fb-root"></div>' +
                     '<script>(function(d, s, id) {' +
@@ -22,6 +13,5 @@ includeFacebookAPI = function() {
 }
 
 module.exports = {
-  fixPampaImgSrc: fixPampaImgSrc,
   includeFacebookAPI: includeFacebookAPI
 };

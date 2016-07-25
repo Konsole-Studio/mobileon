@@ -5,7 +5,7 @@ var error404 = function() {
   };
 
   initError404 = function() {
-    body.addClass('ft-404');
+    body.addClass('mc-404');
   };
 
   return {
