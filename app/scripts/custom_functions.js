@@ -12,6 +12,14 @@ includeFacebookAPI = function() {
   body.prepend(facebookAPI);
 }
 
+hideCarouselIfNotHome = function() {
+  if( !body.hasClass('mc-home') ) {
+    var carouselContainer = body.find('.mc-header-carousel-container');
+    carouselContainer.addClass('mc-hide');
+  }
+}
+
 module.exports = {
-  includeFacebookAPI: includeFacebookAPI
+  includeFacebookAPI: includeFacebookAPI,
+  hideCarouselIfNotHome: hideCarouselIfNotHome
 };

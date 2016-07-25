@@ -38,6 +38,8 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
     /* Import mappings */
     require('./scripts/mapping.js')(mappingUrl);
 
+    hideCarouselIfNotHome();
+
     /* Output final content */
     finalHtml = $('html').toString();
     callback(null, finalHtml);

@@ -102,7 +102,7 @@ var header = function() {
     carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
 
     carouselItem.addClass('mc-header-carousel-item');
-    carouselItem.attr('data-ur-carousel-component', 'item');
+    carouselItem.attr('data-ur-carousel-component', 'item');  
   };
 
   return {
