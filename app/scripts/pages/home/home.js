@@ -4,6 +4,7 @@ var home = function() {
     initHome();
     initFacebookLike();
     initPromocoes();
+    initMaisAcessados();
   };
 
   initHome = function() {
@@ -34,7 +35,7 @@ var home = function() {
     promoContainer.addClass('mc-promo-container');
     promoContainer.prepend(promoHeader);
 
-    productContainer.addClass('mc-product-container');
+    productContainer.addClass('mc-product-container clearfix');
 
     productImage.addClass('mc-product-image');
     productImage.after(detailsWrapper);
@@ -50,7 +51,36 @@ var home = function() {
         currentWrapper.append(currentDetail);
       });
     });
+  };
 
+  initMaisAcessados = function() {
+    var acessadosContainer = homeContainer.find('#mais_acessados');
+    var productContainer = acessadosContainer.find('a');
+    var productImage = acessadosContainer.find('.ma-prod-foto');
+    var promoHeader = '<div class="mc-home-header">Mais Acessados</div>';
+    var detailsWrapper = '<div class="mc-product-details-wrapper"/>';
+
+    acessadosContainer.prev('.mbc').remove();
+
+    acessadosContainer.addClass('mc-acessados-container');
+    acessadosContainer.prepend(promoHeader);
+
+    productContainer.addClass('mc-product-container clearfix');
+
+    productImage.addClass('mc-product-image');
+    productImage.after(detailsWrapper);
+
+    detailsWrapper = acessadosContainer.find('.mc-product-details-wrapper');
+
+    /* Move details into each wrapper */
+    detailsWrapper.map(function(i, el) {
+      var currentWrapper = $(this);
+      var detailElements = currentWrapper.nextAll();
+      detailElements.map(function(i, el) {
+        var currentDetail = $(this);
+        currentWrapper.append(currentDetail);
+      });
+    });
   };
 
   return {

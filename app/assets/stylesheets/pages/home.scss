@@ -11,23 +11,29 @@
       color: $white;
       text-transform: uppercase;
     }
-    .mc-promo-container {
+    .mc-promo-container, .mc-acessados-container {
       padding-top: $padding;
       .mc-product-container {
         padding: $padding;
         display: block;
+        &:not(:last-of-type) {
+          border-bottom: 1px solid $grey4;
+        }
       }
       .mc-product-image {
         display: inline-block;
-        height: 90px;
+        height: 85px;
         width: 30%;
         background-repeat: no-repeat;
+        background-size: contain;
+        float: left;
       }
       .mc-product-details-wrapper {
         width: 70%;
         display: inline-block;
+        float: right;
       }
-      .cp-prod-desc {
+      .cp-prod-desc, .ma-prod-desc {
         padding-bottom: $padding;
         text-transform: uppercase;
         color: $darkRed2;
@@ -42,7 +48,7 @@
         color: $green2;
         font-weight: bold;
       }
-      .cp-prod-vm {
+      .cp-prod-vm, .ma-prod-vm {
         padding-top: $padding;
       }
     }
