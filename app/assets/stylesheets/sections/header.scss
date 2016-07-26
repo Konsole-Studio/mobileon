@@ -30,6 +30,7 @@
       padding: $padding - 2;
       font-size: $base_font_size;
       border-radius: 0;
+      padding: $padding $padding * 3 $padding $padding;
     }
 
     .mc-search-button {
@@ -39,8 +40,9 @@
       bottom: 0;
       margin: auto;
       display: block;
-      right: $spacing + 6;
+      right: $spacing - 2;
       height: $spacing + 6;
+      padding: $padding;
     }
 
   }

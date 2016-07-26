@@ -82,7 +82,7 @@
         border-radius: 0;
         display: inline-block;
         width: 100%;
-        padding: $padding;
+        padding: $padding $padding * 3 $padding $padding;
       }
       .mc-newsletter-button {
         color: $grey3;
@@ -91,12 +91,13 @@
         bottom: 0;
         margin: auto;
         display: block;
-        right: 16px;
+        right: $spacing - 2;
         height: 16px;
+        padding: $padding;
       }
     }
     .mc-imageLinks-container {
-      
+
     }
   }
   .mc-destaque-carousel-container {
