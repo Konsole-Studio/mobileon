@@ -5,13 +5,13 @@ module.exports = function(mappingUrl) {
   pageTypes.push(
     {
       type: "home",
-      url: /(index|^\/$|^\/\?)/g,
+      url: /(index|^\/$|^\/\?)/gi,
       appFile: ["./pages/home/home.js"]
     },
     {
-      type: "menu",
-      url: /menu/g,
-      appFile: ["./pages/browse/menu.js"]
+      type: "pdp",
+      url: /produto\-/gi,
+      appFile: ["./pages/browse/pdp.js"]
     },
     {
       type: "404",
