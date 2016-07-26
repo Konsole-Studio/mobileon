@@ -11,7 +11,7 @@ module.exports = function(callback, data, mappingUrl, contentType, environment) 
   if ( !isPerfectProxy ) {
 
     /* Remove or keep script files */
-    require('./scripts/keep_js.js');
+    require('./scripts/keep_js.js')();
 
     /* Import core/custom functions */
     require('./scripts/core_functions.js');

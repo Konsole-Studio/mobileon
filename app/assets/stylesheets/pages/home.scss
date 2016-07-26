@@ -52,6 +52,49 @@
         padding-top: $padding;
       }
     }
+    .mc-blog-container {
+      .mc-post-container {
+        display: block;
+        padding: $padding $padding $padding + 5 $padding;
+      }
+      .mc-post-title {
+        padding-bottom: $padding / 2;
+        color: $grey12;
+        font-weight: bold;
+      }
+      .mc-post-preview {
+        font-size: $base-font-size;
+        color: $grey13;
+      }
+      .mc-post-button {
+        padding-top: $padding / 2;
+        text-align: right;
+      }
+    }
+    .mc-newsletter-wrapper {
+      background: $darkRed3;
+      padding: $padding;
+      position: relative;
+      .mc-newsletter-input {
+        -webkit-appearance: none;
+        appearance: none;
+        border: 0;
+        border-radius: 0;
+        display: inline-block;
+        width: 100%;
+        padding: $padding;
+      }
+      .mc-newsletter-button {
+        color: $grey3;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        display: block;
+        right: 16px;
+        height: 16px;
+      }
+    }
   }
   .mc-destaque-carousel-container {
     height: 120px;

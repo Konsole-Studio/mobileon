@@ -6,6 +6,8 @@ var home = function() {
     initPromocoes();
     initMaisAcessados();
     initDestaqueCarousel();
+    initBlog();
+    initNewsletter();
   };
 
   initHome = function() {
@@ -86,32 +88,83 @@ var home = function() {
 
   initDestaqueCarousel = function() {
     var carouselContainer = body.find('#capa-destaque');
-    var carouselScroll = carouselContainer.find('ul');
-    var carouselItem = carouselScroll.find('li');
-    var carouselImage = carouselItem.find('img');
+    // var carouselScroll = carouselContainer.find('ul');
+    // var carouselItem = carouselScroll.find('li');
+    // var carouselImage = carouselItem.find('img');
+    //
+    // carouselImage.map(function(i, el) {
+    //   var currentImage = $(this);
+    //   var currentSrc = currentImage.attr('src');
+    //   var currentParent = currentImage.parents('li');
+    //   console.log(currentParent);
+    //   currentParent.css('background', 'url('+ currentSrc +')');
+    //   currentImage.remove();
+    // });
+    //
+    // carouselItem.find('a').remove();
+    //
+    // carouselContainer.addClass('mc-destaque-carousel-container');
+    // carouselContainer.attr('data-ur-set', 'carousel');
+    // carouselContainer.attr('data-ur-fill', '1');
+    // carouselContainer.attr('data-ur-infinite', 'enabled');
+    // carouselContainer.attr('data-ur-autoscroll', 'enabled');
+    //
+    // carouselScroll.addClass('mc-destaque-carousel-scroll');
+    // carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
+    //
+    // carouselItem.addClass('mc-destaque-carousel-item');
+    // carouselItem.attr('data-ur-carousel-component', 'item');
 
-    carouselImage.map(function(i, el) {
-      var currentImage = $(this);
-      var currentSrc = currentImage.attr('src');
-      var currentParent = currentImage.parents('li');
-      console.log(currentParent);
-      currentParent.css('background', 'url('+ currentSrc +')');
-      currentImage.remove();
+    /* Hide carousel to simplify information on homepage */
+    carouselContainer.addClass('mc-hide');
+  };
+
+  initBlog = function() {
+    var blogContainer = body.find('#capa-blog-posts');
+    var postContainer = blogContainer.find('.cb-post');
+    var postTitle = postContainer.find('.cb-p-tit');
+    var postPreview = postContainer.find('.cb-p-descr');
+    var postButton = postContainer.find('.cb-p-lm');
+    var blogHeader = '<div class="mc-home-header">Blog Casa da Construção</div>';
+
+    body.find('#capa-blog').remove();
+
+    blogContainer.prepend(blogHeader);
+
+    blogContainer.addClass('mc-blog-container');
+    postContainer.addClass('mc-post-container')
+    postTitle.addClass('mc-post-title');
+    postPreview.addClass('mc-post-preview');
+    postButton.addClass('mc-post-button');
+  };
+
+  initNewsletter = function() {
+    var newsletterContainer = body.find('#capa-cadastro');
+    var newsletterInput = newsletterContainer.find('#cademail');
+    var newsletterButton = newsletterContainer.find('a');
+    var newsletterHeader = '<div class="mc-home-header">Receba as novidades da Casa</div>';
+    var newsletterWrapper = '<div class="mc-newsletter-wrapper"/>';
+
+    newsletterContainer.addClass('mc-newsletter-container');
+    newsletterInput.addClass('mc-newsletter-input');
+    newsletterButton.addClass('mc-newsletter-button fa fa-paper-plane');
+
+    newsletterButton.removeAttr('href');
+
+    newsletterInput.attr('placeholder', 'Email');
+
+    newsletterContainer.prepend(newsletterWrapper);
+
+    newsletterWrapper = newsletterContainer.find('.mc-newsletter-wrapper');
+
+    var newsletterElements = newsletterWrapper.nextAll();
+
+    newsletterElements.map(function(i, el) {
+      var currentElement = $(this);
+      newsletterWrapper.append(currentElement);
     });
 
-    carouselItem.find('a').remove();
-
-    carouselContainer.addClass('mc-destaque-carousel-container');
-    carouselContainer.attr('data-ur-set', 'carousel');
-    carouselContainer.attr('data-ur-fill', '1');
-    carouselContainer.attr('data-ur-infinite', 'enabled');
-    carouselContainer.attr('data-ur-autoscroll', 'enabled');
-
-    carouselScroll.addClass('mc-destaque-carousel-scroll');
-    carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
-
-    carouselItem.addClass('mc-destaque-carousel-item');
-    carouselItem.attr('data-ur-carousel-component', 'item');
+    newsletterContainer.prepend(newsletterHeader);
   };
 
   return {

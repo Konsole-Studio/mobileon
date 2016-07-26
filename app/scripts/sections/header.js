@@ -85,7 +85,7 @@ var header = function() {
       var currentImage = $(this);
       var currentSrc = currentImage.attr('src');
       var currentParent = currentImage.parents('li');
-      console.log(currentParent);
+
       currentParent.css('background', 'url('+ currentSrc +')');
       currentImage.remove();
     });
@@ -102,7 +102,7 @@ var header = function() {
     carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
 
     carouselItem.addClass('mc-header-carousel-item');
-    carouselItem.attr('data-ur-carousel-component', 'item');  
+    carouselItem.attr('data-ur-carousel-component', 'item');
   };
 
   return {
