@@ -88,7 +88,7 @@ var home = function() {
   };
 
   initDestaqueCarousel = function() {
-    var carouselContainer = body.find('#capa-destaque');
+    var carouselContainer = homeContainer.find('#capa-destaque');
     // var carouselScroll = carouselContainer.find('ul');
     // var carouselItem = carouselScroll.find('li');
     // var carouselImage = carouselItem.find('img');
@@ -121,7 +121,7 @@ var home = function() {
   };
 
   initBlog = function() {
-    var blogContainer = body.find('#capa-blog-posts');
+    var blogContainer = homeContainer.find('#capa-blog-posts');
     var postContainer = blogContainer.find('.cb-post');
     var postTitle = postContainer.find('.cb-p-tit');
     var postPreview = postContainer.find('.cb-p-descr');
@@ -140,7 +140,7 @@ var home = function() {
   };
 
   initNewsletter = function() {
-    var newsletterContainer = body.find('#capa-cadastro');
+    var newsletterContainer = homeContainer.find('#capa-cadastro');
     var newsletterInput = newsletterContainer.find('#cademail');
     var newsletterButton = newsletterContainer.find('a');
     var newsletterHeader = '<div class="mc-home-header">Receba as novidades da Casa</div>';
@@ -170,7 +170,7 @@ var home = function() {
 
   initGlobalRemover = function() {
     var capaGrupo = homeContainer.find('#capa-grupo');
-    var imageLinksContainer = body.find('#col-dir');
+    var imageLinksContainer = homeContainer.find('#col-dir');
 
     capaGrupo.remove();
     imageLinksContainer.remove();
