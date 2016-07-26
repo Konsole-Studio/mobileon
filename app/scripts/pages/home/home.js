@@ -8,6 +8,7 @@ var home = function() {
     initDestaqueCarousel();
     initBlog();
     initNewsletter();
+    initGlobalRemover();
   };
 
   initHome = function() {
@@ -166,6 +167,14 @@ var home = function() {
 
     newsletterContainer.prepend(newsletterHeader);
   };
+
+  initGlobalRemover = function() {
+    var capaGrupo = homeContainer.find('#capa-grupo');
+    var imageLinksContainer = body.find('#col-dir');
+
+    capaGrupo.remove();
+    imageLinksContainer.remove();
+  }
 
   return {
     init: init
