@@ -1,0 +1,9 @@
+#breadcrumb {
+  padding: $padding;
+  font-size: $base_font_size - 1;
+  color: $darkGrey;
+  a {
+    color: $darkGrey;
+    text-decoration: underline;
+  }
+}

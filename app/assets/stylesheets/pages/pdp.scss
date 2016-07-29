@@ -1,0 +1,32 @@
+/* pdp.scss */
+.mc-pdp {
+  .mc-product-table {
+    width: 100%;
+    table-layout: fixed;
+    .mc-product-title {
+      padding: $padding;
+      font-weight: bold;
+    }
+    .mc-product-entrega {
+      font-size: $mini_font;
+      margin: 0 $margin;
+      padding: $padding / 2;
+      background: $darkRed;
+      color: $white;
+      display: inline-block;
+      border-radius: 5px;
+      position: relative;
+    }
+    .mc-product-block {
+      width: 100%;
+      table-layout: fixed;
+      tr, td {
+        width: auto;
+        display: block;
+      }
+      .mc-product-image {
+        padding: $padding;
+      }
+    }
+  }
+}
