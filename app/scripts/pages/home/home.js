@@ -12,9 +12,9 @@ var home = function() {
   };
 
   initHome = function() {
-    body.addClass('mc-home');
+    body.addClass('mo-home');
     homeContainer = body.find('#meio');
-    homeContainer.addClass("mc-home-container")
+    homeContainer.addClass("mo-home-container")
   };
 
   initFacebookLike = function() {
@@ -24,7 +24,7 @@ var home = function() {
 
     facebookLink.remove();
 
-    facebookContainer.addClass('mc-facebookLike-container')
+    facebookContainer.addClass('mo-facebookLike-container')
     facebookContainer.append(facebookLikeAPI);
   };
 
@@ -32,19 +32,19 @@ var home = function() {
     var promoContainer = homeContainer.find('#capa-promocoes');
     var productContainer = promoContainer.find('a');
     var productImage = promoContainer.find('.cp-prod-foto');
-    var promoHeader = '<div class="mc-home-header">Promoções</div>';
-    var detailsWrapper = '<div class="mc-product-details-wrapper"/>';
+    var promoHeader = '<div class="mo-home-header">Promoções</div>';
+    var detailsWrapper = '<div class="mo-product-details-wrapper"/>';
 
     promoContainer.find('.mbc').remove();
-    promoContainer.addClass('mc-promo-container');
+    promoContainer.addClass('mo-promo-container');
     promoContainer.prepend(promoHeader);
 
-    productContainer.addClass('mc-product-container clearfix');
+    productContainer.addClass('mo-product-container clearfix');
 
-    productImage.addClass('mc-product-image');
+    productImage.addClass('mo-product-image');
     productImage.after(detailsWrapper);
 
-    detailsWrapper = promoContainer.find('.mc-product-details-wrapper');
+    detailsWrapper = promoContainer.find('.mo-product-details-wrapper');
 
     /* Move details into each wrapper */
     detailsWrapper.map(function(i, el) {
@@ -61,20 +61,20 @@ var home = function() {
     var acessadosContainer = homeContainer.find('#mais_acessados');
     var productContainer = acessadosContainer.find('a');
     var productImage = acessadosContainer.find('.ma-prod-foto');
-    var promoHeader = '<div class="mc-home-header">Mais Acessados</div>';
-    var detailsWrapper = '<div class="mc-product-details-wrapper"/>';
+    var promoHeader = '<div class="mo-home-header">Mais Acessados</div>';
+    var detailsWrapper = '<div class="mo-product-details-wrapper"/>';
 
     acessadosContainer.prev('.mbc').remove();
 
-    acessadosContainer.addClass('mc-acessados-container');
+    acessadosContainer.addClass('mo-acessados-container');
     acessadosContainer.prepend(promoHeader);
 
-    productContainer.addClass('mc-product-container clearfix');
+    productContainer.addClass('mo-product-container clearfix');
 
-    productImage.addClass('mc-product-image');
+    productImage.addClass('mo-product-image');
     productImage.after(detailsWrapper);
 
-    detailsWrapper = acessadosContainer.find('.mc-product-details-wrapper');
+    detailsWrapper = acessadosContainer.find('.mo-product-details-wrapper');
 
     /* Move details into each wrapper */
     detailsWrapper.map(function(i, el) {
@@ -104,20 +104,20 @@ var home = function() {
     //
     // carouselItem.find('a').remove();
     //
-    // carouselContainer.addClass('mc-destaque-carousel-container');
+    // carouselContainer.addClass('mo-destaque-carousel-container');
     // carouselContainer.attr('data-ur-set', 'carousel');
     // carouselContainer.attr('data-ur-fill', '1');
     // carouselContainer.attr('data-ur-infinite', 'enabled');
     // carouselContainer.attr('data-ur-autoscroll', 'enabled');
     //
-    // carouselScroll.addClass('mc-destaque-carousel-scroll');
+    // carouselScroll.addClass('mo-destaque-carousel-scroll');
     // carouselScroll.attr('data-ur-carousel-component', 'scroll_container');
     //
-    // carouselItem.addClass('mc-destaque-carousel-item');
+    // carouselItem.addClass('mo-destaque-carousel-item');
     // carouselItem.attr('data-ur-carousel-component', 'item');
 
     /* Hide carousel to simplify information on homepage */
-    carouselContainer.addClass('mc-hide');
+    carouselContainer.addClass('mo-hide');
   };
 
   initBlog = function() {
@@ -126,29 +126,29 @@ var home = function() {
     var postTitle = postContainer.find('.cb-p-tit');
     var postPreview = postContainer.find('.cb-p-descr');
     var postButton = postContainer.find('.cb-p-lm');
-    var blogHeader = '<div class="mc-home-header">Blog Casa da Construção</div>';
+    var blogHeader = '<div class="mo-home-header">Blog Casa da Construção</div>';
 
     body.find('#capa-blog').remove();
 
     blogContainer.prepend(blogHeader);
 
-    blogContainer.addClass('mc-blog-container');
-    postContainer.addClass('mc-post-container')
-    postTitle.addClass('mc-post-title');
-    postPreview.addClass('mc-post-preview');
-    postButton.addClass('mc-post-button');
+    blogContainer.addClass('mo-blog-container');
+    postContainer.addClass('mo-post-container')
+    postTitle.addClass('mo-post-title');
+    postPreview.addClass('mo-post-preview');
+    postButton.addClass('mo-post-button');
   };
 
   initNewsletter = function() {
     var newsletterContainer = homeContainer.find('#capa-cadastro');
     var newsletterInput = newsletterContainer.find('#cademail');
     var newsletterButton = newsletterContainer.find('a');
-    var newsletterHeader = '<div class="mc-home-header">Receba as novidades da Casa</div>';
-    var newsletterWrapper = '<div class="mc-newsletter-wrapper"/>';
+    var newsletterHeader = '<div class="mo-home-header">Receba as novidades da Casa</div>';
+    var newsletterWrapper = '<div class="mo-newsletter-wrapper"/>';
 
-    newsletterContainer.addClass('mc-newsletter-container');
-    newsletterInput.addClass('mc-newsletter-input');
-    newsletterButton.addClass('mc-newsletter-button fa fa-paper-plane');
+    newsletterContainer.addClass('mo-newsletter-container');
+    newsletterInput.addClass('mo-newsletter-input');
+    newsletterButton.addClass('mo-newsletter-button fa fa-paper-plane');
 
     newsletterButton.removeAttr('href');
 
@@ -156,7 +156,7 @@ var home = function() {
 
     newsletterContainer.prepend(newsletterWrapper);
 
-    newsletterWrapper = newsletterContainer.find('.mc-newsletter-wrapper');
+    newsletterWrapper = newsletterContainer.find('.mo-newsletter-wrapper');
 
     var newsletterElements = newsletterWrapper.nextAll();
 

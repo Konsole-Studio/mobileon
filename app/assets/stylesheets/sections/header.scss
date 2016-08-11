@@ -1,4 +1,4 @@
-.mc-header-container {
+.mo-header-container {
   background: $red4;
 
   #top-content-logo {
@@ -14,16 +14,16 @@
     text-align: center;
   }
 
-  .mc-menu-button {
+  .mo-menu-button {
     position: absolute;
     padding: $padding;
     color: $white;
   }
 
-  .mc-search-container {
+  .mo-search-container {
     padding: $padding;
     position: relative;
-    .mc-search-input {
+    .mo-search-input {
       width: 100%;
       -webkit-appearance: none;
       border: 0;
@@ -33,7 +33,7 @@
       padding: $padding $padding * 3 $padding $padding;
     }
 
-    .mc-search-button {
+    .mo-search-button {
       color: $grey11;
       position: absolute;
       top: 0;

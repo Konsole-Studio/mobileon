@@ -1,13 +1,13 @@
 /* pdp.scss */
-.mc-pdp {
-  .mc-product-table {
+.mo-pdp {
+  .mo-product-table {
     width: 100%;
     table-layout: fixed;
-    .mc-product-title {
+    .mo-product-title {
       padding: $padding;
       font-weight: bold;
     }
-    .mc-product-entrega {
+    .mo-product-entrega {
       font-size: $mini_font;
       margin: 0 $margin;
       padding: $padding / 2;
@@ -17,14 +17,14 @@
       border-radius: 5px;
       position: relative;
     }
-    .mc-product-block {
+    .mo-product-block {
       width: 100%;
       table-layout: fixed;
       tr, td {
         width: auto;
         display: block;
       }
-      .mc-product-image {
+      .mo-product-image {
         padding: $padding;
       }
     }

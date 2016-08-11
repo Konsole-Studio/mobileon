@@ -7,7 +7,7 @@ var pdp = function() {
   };
 
   initProductPage = function() {
-    body.addClass('mc-pdp');
+    body.addClass('mo-pdp');
   };
 
   initFixBreadcrumb = function() {
@@ -25,14 +25,14 @@ var pdp = function() {
     var productBlockContainer = productTable.find('tr:nth-of-type(3) table');
     var productImage = productBlockContainer.find('tr:nth-of-type(1) > td:nth-child(1)');
 
-    productTable.addClass('mc-product-table');
-    productTitle.addClass('mc-product-title');
-    productBlockContainer.addClass('mc-product-block');
-    productImage.addClass('mc-product-image');
+    productTable.addClass('mo-product-table');
+    productTitle.addClass('mo-product-title');
+    productBlockContainer.addClass('mo-product-block');
+    productImage.addClass('mo-product-image');
 
     if( productEntrega ) {
-      var entregaBadge = '<div class="mc-product-entrega">Pronta Entrega</div>';
-      productEntrega.addClass('mc-hide');
+      var entregaBadge = '<div class="mo-product-entrega">Pronta Entrega</div>';
+      productEntrega.addClass('mo-hide');
       productTitle.after(entregaBadge);
     }
   };

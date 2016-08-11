@@ -1,26 +1,26 @@
 /* home.scss */
-.mc-home {
-  .mc-home-container {
-    .mc-facebookLike-container {
+.mo-home {
+  .mo-home-container {
+    .mo-facebookLike-container {
       width: 100%;
       padding: $padding;
     }
-    .mc-home-header {
+    .mo-home-header {
       background: $red4;
       padding: $padding;
       color: $white;
       text-transform: uppercase;
     }
-    .mc-promo-container, .mc-acessados-container {
+    .mo-promo-container, .mo-acessados-container {
       padding-top: $padding;
-      .mc-product-container {
+      .mo-product-container {
         padding: $padding;
         display: block;
         &:not(:last-of-type) {
           border-bottom: 1px solid $grey4;
         }
       }
-      .mc-product-image {
+      .mo-product-image {
         display: inline-block;
         height: 85px;
         width: 30%;
@@ -28,7 +28,7 @@
         background-size: contain;
         float: left;
       }
-      .mc-product-details-wrapper {
+      .mo-product-details-wrapper {
         width: 70%;
         display: inline-block;
         float: right;
@@ -52,30 +52,30 @@
         padding-top: $padding;
       }
     }
-    .mc-blog-container {
-      .mc-post-container {
+    .mo-blog-container {
+      .mo-post-container {
         display: block;
         padding: $padding $padding $padding + 5 $padding;
       }
-      .mc-post-title {
+      .mo-post-title {
         padding-bottom: $padding / 2;
         color: $grey12;
         font-weight: bold;
       }
-      .mc-post-preview {
+      .mo-post-preview {
         font-size: $base-font-size;
         color: $grey13;
       }
-      .mc-post-button {
+      .mo-post-button {
         padding-top: $padding / 2;
         text-align: right;
       }
     }
-    .mc-newsletter-wrapper {
+    .mo-newsletter-wrapper {
       background: $darkRed3;
       padding: $padding;
       position: relative;
-      .mc-newsletter-input {
+      .mo-newsletter-input {
         -webkit-appearance: none;
         appearance: none;
         border: 0;
@@ -84,7 +84,7 @@
         width: 100%;
         padding: $padding $padding * 3 $padding $padding;
       }
-      .mc-newsletter-button {
+      .mo-newsletter-button {
         color: $grey3;
         position: absolute;
         top: 0;
@@ -96,13 +96,13 @@
         padding: $padding;
       }
     }
-    .mc-imageLinks-container {
+    .mo-imageLinks-container {
 
     }
   }
-  .mc-destaque-carousel-container {
+  .mo-destaque-carousel-container {
     height: 120px;
-    .mc-destaque-carousel-item {
+    .mo-destaque-carousel-item {
       background-size: 100% 100% !important;
     }
   }

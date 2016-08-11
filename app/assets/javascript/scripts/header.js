@@ -1,8 +1,8 @@
 jQuery(document).ready(function() {
   /* Variable declarations */
-  var menuButton = jQuery('.mc-menu-button');
-  var siteMask = jQuery('.mc-site-mask');
-  var carouselContainer = jQuery('.mc-header-carousel-scroll');
+  var menuButton = jQuery('.mo-menu-button');
+  var siteMask = jQuery('.mo-site-mask');
+  var carouselContainer = jQuery('.mo-header-carousel-scroll');
 
   /* Event declarations */
   menuButton.on('click', function() {
@@ -19,15 +19,15 @@ jQuery(document).ready(function() {
 
   /* Function declarations */
   function handleMenu() {
-    var siteContainer = jQuery('.mc-site-wrap');
-    var siteMask = jQuery('.mc-site-mask');
-    var menuContainer = jQuery('.mc-menu-container ');
-    if( !siteContainer.hasClass('mc-nav-opened') ) {
-      siteContainer.addClass('mc-nav-opened');
+    var siteContainer = jQuery('.mo-site-wrap');
+    var siteMask = jQuery('.mo-site-mask');
+    var menuContainer = jQuery('.mo-menu-container ');
+    if( !siteContainer.hasClass('mo-nav-opened') ) {
+      siteContainer.addClass('mo-nav-opened');
       siteMask.addClass('active');
       menuContainer.addClass('active');
     } else {
-      siteContainer.removeClass('mc-nav-opened');
+      siteContainer.removeClass('mo-nav-opened');
       siteMask.removeClass('active');
       setTimeout(function() {
         menuContainer.removeClass('active');

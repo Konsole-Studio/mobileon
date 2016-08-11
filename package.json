@@ -1,7 +1,7 @@
 {
-  "name": "CasaDaConstrucao",
+  "name": "Mobileon",
   "version": "1.0.0",
-  "description": "Mobile on Cloud project for Casa da Construção",
+  "description": "Mobileon Framework",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pt-br/touch-first.git"
+    "url": "git+https://github.com/pt-br/mobileon.git"
   },
   "author": "@pt-br",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pt-br/touch-first/issues"
+    "url": "https://github.com/pt-br/mobileon/issues"
   },
-  "homepage": "https://github.com/pt-br/touch-first#readme"
+  "homepage": "http://mobileon.com.br"
 }

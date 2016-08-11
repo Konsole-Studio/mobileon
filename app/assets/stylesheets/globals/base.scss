@@ -52,15 +52,15 @@ input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
 
-.mc-hide {
+.mo-hide {
   display: none;
 }
 
-.mc-hide-force {
+.mo-hide-force {
   display: none !important;
 }
 
-.mc-hidden {
+.mo-hidden {
   visibility: hidden;
 }
 
@@ -68,14 +68,14 @@ input[type="number"]::-webkit-outer-spin-button {
   overflow: auto;
 }
 
-.mc-clear {
+.mo-clear {
   clear: both;
 }
 
 /* Carousel styles */
-.mc-header-carousel-container {
+.mo-header-carousel-container {
   height: 160px;
-  .mc-header-carousel-item {
+  .mo-header-carousel-item {
     background-size: 100% 100% !important;
   }
 }

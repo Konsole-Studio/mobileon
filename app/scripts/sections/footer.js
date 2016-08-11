@@ -8,8 +8,8 @@ var footer = function() {
     footerContainer = body.find('#footer');
     var footerContent = footerContainer.find('#footer-menu');
 
-    footerContainer.addClass('mc-footer');
-    footerContent.addClass('mc-footer-content');
+    footerContainer.addClass('mo-footer');
+    footerContent.addClass('mo-footer-content');
 
     var desktopHost = footerContent.find('div');
     desktopHost.remove();

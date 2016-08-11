@@ -13,9 +13,9 @@ includeFacebookAPI = function() {
 }
 
 hideCarouselIfNotHome = function() {
-  if( !body.hasClass('mc-home') ) {
-    var carouselContainer = body.find('.mc-header-carousel-container');
-    carouselContainer.addClass('mc-hide');
+  if( !body.hasClass('mo-home') ) {
+    var carouselContainer = body.find('.mo-header-carousel-container');
+    carouselContainer.addClass('mo-hide');
   }
 }
 

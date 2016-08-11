@@ -1,5 +1,5 @@
 /* Navigation Menu - Background */
-.mc-menu-container {
+.mo-menu-container {
   /* critical sizing and position styles */
   width: 100%;
   height: 100%;
@@ -21,13 +21,13 @@
 }
 
 /* Navigation Menu - List items */
-.mc-menu-item {
+.mo-menu-item {
   /* non-critical appearance styles */
   width: 69.6%;
   border-bottom: 1px solid #fff;
 }
 
-.mc-menu-item a {
+.mo-menu-item a {
   /* non-critical appearance styles */
   display: block;
   padding: 1em;
@@ -39,7 +39,7 @@
 }
 
 /* Site Wrapper - Everything that isn't navigation */
-.mc-site-wrap {
+.mo-site-wrap {
   /* Critical position and size styles */
   min-height: 100%;
   min-width: 100%;
@@ -50,7 +50,7 @@
   left: 0;
   z-index: 5;
   transition: left 0.2s;
-  &.mc-nav-opened {
+  &.mo-nav-opened {
     left: 70%;
     -webkit-filter: blur(3px);
     height: 100%;
@@ -58,7 +58,7 @@
   }
 }
 
-.mc-site-mask {
+.mo-site-mask {
   &.active {
     position: absolute;
     top: 0px;
